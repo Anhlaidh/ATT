@@ -50,7 +50,7 @@
             " document.close(); " +
             " } }" +
             "</scr_ipt>" +
-            "<scr_ipt onreadystatechange='mapReadyStateChange(this.readyState);' onload='mapReadyStateChange(\"loaded\");' src=\"http://api.map.baidu.com/api?v=2.0&ak=6b6c1a67eaa7db1ca6d6da28e590e343&services=true\"></scr_ipt>" +
+            "<scr_ipt onreadystatechange='mapReadyStateChange(this.readyState);' onload='mapReadyStateChange(\"loaded\");' src=\"http://api.map.baidu.com/api?v=2.0&ak=6b6c1a67eaa7db1ca6d6da28e590e343&com.ATT.services=true\"></scr_ipt>" +
             "</body>" +
             "</html>" +
             "</script>",
