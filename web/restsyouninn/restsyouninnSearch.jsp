@@ -1,18 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>用户管理</title>
+<title>休假审批</title>
 <link href="../css/style2.css" rel="stylesheet" type="text/css" />
 <link href="../css/select.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="../css/style.css" />
-<link rel="stylesheet" type="text/css" href="../css/WdatePicker.css" />
-<link rel="stylesheet" type="text/css" href="../css/skin_/form.css" />
-<link href="umeditor/themes/default/_css/umeditor.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript" src="../js/jquery.idTabs.min.js"></script>
 <script type="text/javascript" src="../js/select-ui.min.js"></script>
-
 <script type="text/javascript" src="../js/global.js"></script>
 <script type="text/javascript" src="../js/jquery.select.js"></script>
 <script type="text/javascript" src="../js/WdatePicker.js"></script>
@@ -46,7 +42,8 @@ $(document).ready(function(e) {
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">日报管理</a></li>
+    <li><a href="#">审批</a></li>
+    <li><a href="#">休假审批</a></li>
     </ul>
     </div>
    
@@ -54,27 +51,17 @@ $(document).ready(function(e) {
     <br />
     <br />
     <ul class="seachform">
-   <li>
-      <label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名</label><input name="" type="text" class="scinput" /></li>
     <li>
-      <label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开始日期</label><input name="" type="text" class="scinput" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" /></li>
+      <label> 休假日期:</label><input name="" type="text" class="scinput"  value="请选择开始日期"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"  /></li>
+     <li>  <label> 到</label><input name="" type="text" class="scinput" value="请选择结束日期"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"</li>
     <li>
-      <label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;结束日期</label><input name="" type="text" class="scinput" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/></li>
-
+    <label>姓名：</label>  
+    <input name="" type="text" class="scinput" />
+    </li>
     <li><label>&nbsp;</label><input name="" type="button" class="scbtn" value="查询"/></li>
-    
     </ul>
     </div>
 
-    <div class="tools">
-    
-    	<ul class="toolbar">
-        <li class="click"><span><img src="../images/t01.png" /></span><a href="reportInsert.html" target="_self">添加</a></li>
-        <li class="click"><img src="../images/trash.png" /></span><a href="#" target="rightFrame">删除</a></li>
-        </ul>
-    </div>
-    
-    
     <table class="tablelist"><tbody><tr><td><table class="tablelist"><tbody><tr><td><table class="tablelist">
       <tbody>
         <tr>
@@ -84,11 +71,11 @@ $(document).ready(function(e) {
                 <th width="3%"><input name="" type="checkbox" value="" checked="checked"/></th>
                   <th width="7%">工号<i class="sort"><img src="../images/px.gif" /></i></th>
                   <th width="11%">姓名</th>
-                  <th width="10%">日期</th>
-                  <th width="9%">作业进度</th>
-                  <th width="11%">作业内容</th>
-                  <th width="7%">问题点</th>
-                  <th width="8%">联络事项</th>
+                  <th width="10%">休假开始日期</th>
+                  <th width="9%">开始时间</th>
+                  <th width="10%">休假结束日期</th>
+                  <th width="11%">休假终了时间</th>
+                  <th width="7%">休假原因</th>
                   <th width="13%">操作</th>
                 </tr>
               </thead>
@@ -98,58 +85,57 @@ $(document).ready(function(e) {
                   <td>20130901</td>
                   <td>admin</td>
                   <td>2013-09-09 </td>
-                  <td>100%</td>
-                  <td>登录模块详细设计</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                 <td><span><a href="reportUpdate.html" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                  <td>08:30</td>
+                  <td>2013-09-09 </td>
+                  <td>17:30</td>
+                  <td>结婚</td>
+                 
+                 <td><span><a href="#" class="tablelink"><img src="../images/valid.png" /></a> <a href="#" class="tablelink" onclick="confirm('确定要驳回当前消息？')"> <img src="../images/error.png" /></a></span></td>
                 </tr>
                 <tr>  
                  <td><input name="" type="checkbox" value="" /></td>              
                   <td>20130902</td>
                   <td>wanglin</td>
                   <td>2018-09-09 </td>
-                  <td>80%</td>
-                  <td>数据库设计书设计</td>
-         
-                  <td>详细设计问题</td>
-                  <td>&nbsp;</td>
-                  <td><span><a href="reportUpdate.html" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                  <td>08:30</td>
+                  <td>2018-09-10 </td>
+                  <td>17:30</td>
+                  <td>年假</td>
+             
+                 <td><span><a href="#" class="tablelink"><img src="../images/valid.png" /> <a href="#" class="tablelink"  onclick="confirm('确定通过当前消息？')" /></a><a href="#" class="tablelink" onclick="confirm('确定要驳回当前消息？')"><img src="../images/error.png" /></a></span></td>
                 </tr>
                 <tr>
                   <td><input name="" type="checkbox" value="" /></td>
                   <td>20130903</td>
                   <td>wangli</td>
                   <td>2015-09-10 </td>
-                  <td>100%</td>
-            
-                  <td>项目启动</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td><span><a href="reportUpdate.html" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                  <td>08:30</td>
+                  <td>2015-09-10 </td>
+                  <td>17:30</td>
+                  <td>生病</td>
+                 <td><span><a href="#" class="tablelink"><img src="../images/valid.png" /> <a href="#" class="tablelink"  onclick="confirm('确定通过当前消息？')" /></a><a href="#" class="tablelink" onclick="confirm('确定要驳回当前消息？')"> <img src="../images/error.png" /></a></span></td>
                 </tr>
                 <tr>
                   <td><input name="" type="checkbox" value="" /></td>
                   <td>20130904</td>
                   <td>zhangli</td>
                   <td>2015-09-09 </td>
-                  <td>100%</td>
-                  <td>用户管理数据表设计</td>
-             
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                   <td><span><a href="reportUpdate.html" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                  <td>08:30</td>
+                  <td>2015-09-09 </td>
+                  <td>17:30</td>
+                  <td>年假</td>
+                <td><span><a href="#" class="tablelink"><img src="../images/valid.png" /> <a href="#" class="tablelink"  onclick="confirm('确定通过当前消息？')" /></a> <a href="#" class="tablelink" onclick="confirm('确定要驳回当前消息？')"> <img src="../images/error.png" /></a></span></td>
                 </tr>
                 <tr>
                   <td><input name="" type="checkbox" value="" /></td>
                   <td>20130905</td>
                   <td>zhang_lin</td>
                   <td>2015-09-09 </td>
-                  <td>100%</td>
-                  <td>数据库维护</td>
-                  <td>需要定期维护</td>
-                  <td>&nbsp;</td>
-                  <td><span><a href="reportUpdate.html" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                  <td>08:30</td>
+                  <td>2015-09-09 </td>
+                  <td>17:30</td>
+                  <td>年假</td>
+                  <td><span><a href="#" class="tablelink"><img src="../images/valid.png" /> <a href="#" class="tablelink"  onclick="confirm('确定通过当前消息？')" /></a> <a href="#" class="tablelink" onclick="confirm('确定要驳回当前消息？')"> <img src="../images/error.png" /></a></span></td>
                 </tr>
               </tbody>
           </table></td>

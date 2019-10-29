@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -70,7 +71,7 @@ $(document).ready(function(e) {
     <div class="tools">
     
     	<ul class="toolbar">
-        <li class="click"><span><img src="../images/t01.png" /></span><a href="restInsert.html" target="_self">添加</a></li>
+        <li class="click"><span><img src="../images/t01.png" /></span><a href="restInsert.jsp" target="_self">添加</a></li>
         <li class="click"><img src="../images/trash.png" /></span><a href="#" target="rightFrame">删除</a></li>
         </ul>
     </div>
@@ -105,7 +106,7 @@ $(document).ready(function(e) {
                   <td>17:30</td>
                   <td>8.0</td>
                   <td>申请中</td>
-                 <td><span><a href="restUpdate.html" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                 <td><span><a href="restUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
                 </tr>
                 <tr>  
                  <td><input name="" type="checkbox" value="" /></td>              
@@ -117,7 +118,7 @@ $(document).ready(function(e) {
                   <td>17:30</td>
                   <td>16.0</td>
                   <td>申请中</td>
-                  <td><span><a href="restUpdate.html" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                  <td><span><a href="restUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
                 </tr>
                 <tr>
                   <td><input name="" type="checkbox" value="" /></td>
@@ -129,7 +130,7 @@ $(document).ready(function(e) {
                   <td>17:30</td>
                   <td>8.0</td>
                   <td>已批准</td>
-                  <td><span><a href="restUpdate.html" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                  <td><span><a href="restUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
                 </tr>
                 <tr>
                   <td><input name="" type="checkbox" value="" /></td>
@@ -141,7 +142,7 @@ $(document).ready(function(e) {
                   <td>17:30</td>
                   <td>8.0</td>
                   <td>已批准</td>
-                   <td><span><a href="restUpdate.html" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                   <td><span><a href="restUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
                 </tr>
                 <tr>
                   <td><input name="" type="checkbox" value="" /></td>
@@ -153,7 +154,7 @@ $(document).ready(function(e) {
                   <td>17:30</td>
                   <td>8.0</td>
                   <td>已批准</td>
-                  <td><a href="restUpdate.html" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></restUpdatespan></td>
+                  <td><a href="restUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></restUpdatespan></td>
                 </tr>
               </tbody>
           </table></td>
