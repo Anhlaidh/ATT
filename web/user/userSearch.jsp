@@ -43,23 +43,29 @@ $(document).ready(function(e) {
 	<!--查询条件-->
     <br />
     <br />
+    <form action="/DeptPageListServlet" method="post">
     <ul class="seachform">
   
-    <li><label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名</label><input name="" type="text" class="scinput" /></li>
+    <li><label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名</label><input name="name" type="text" class="scinput" /></li>
     <li><label>部门</label>  
     <div class="vocation">
-    <select class="select3">
-    <option>研发一部</option>
-    <option>研发二部</option>
-    <option>研发三部</option>
-    <option>测试</option>
-    </select>
+
+            <select class="select3" name="department">
+                <option value="research_1">研发一部</option>
+                <option value="research_2">研发二部</option>
+                <option value="research_3">研发三部</option>
+                <option value="test">测试</option>
+            </select>
+
+
     </div>
     </li>
 
-    <li><label>&nbsp;</label><input name="" type="button" class="scbtn" value="查询" /></li>
+    <li><label>&nbsp;</label>
+        <input name="" type="submit" class="scbtn" value="查询" /></li>
     
     </ul>
+    </form>
     </div>
 
     <div class="tools">
