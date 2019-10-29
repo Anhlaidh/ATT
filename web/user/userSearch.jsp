@@ -1,19 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>加班管理</title>
+<title>用户管理</title>
 <link href="../css/style2.css" rel="stylesheet" type="text/css" />
 <link href="../css/select.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript" src="../js/jquery.idTabs.min.js"></script>
 <script type="text/javascript" src="../js/select-ui.min.js"></script>
-<script type="text/javascript" src="../js/global.js"></script>
-<script type="text/javascript" src="../js/jquery.select.js"></script>
-<script type="text/javascript" src="../js/WdatePicker.js"></script>
-<script type="text/javascript" src="../js/umeditor.config.js"></script>
-<script type="text/javascript" src="../js/editor_api.js"></script>
-<script type="text/javascript" src="../umeditor/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
     KE.show({
         id : 'content7',
@@ -41,7 +36,7 @@ $(document).ready(function(e) {
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">加班管理</a></li>
+    <li><a href="#">用户管理</a></li>
     </ul>
     </div>
    
@@ -49,28 +44,28 @@ $(document).ready(function(e) {
     <br />
     <br />
     <ul class="seachform">
-    <li>
-      <label> 申请日期:</label><input name="" type="text" class="scinput"  value="请选择开始日期" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" /></li>
-     <li>  <label> 到</label><input name="" type="text" class="scinput" value="请选择结束日期" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" /></li>
-    <li>
-    <label>状态：</label>  
+  
+    <li><label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名</label><input name="" type="text" class="scinput" /></li>
+    <li><label>部门</label>  
     <div class="vocation">
     <select class="select3">
-    <option>--请选择--</option>
-    <option>审批中</option>
-    <option>已批准</option>
-    <option>已驳回</option>
+    <option>研发一部</option>
+    <option>研发二部</option>
+    <option>研发三部</option>
+    <option>测试</option>
     </select>
     </div>
     </li>
-    <li><label>&nbsp;</label><input name="" type="button" class="scbtn" value="查询"/></li>
+
+    <li><label>&nbsp;</label><input name="" type="button" class="scbtn" value="查询" /></li>
+    
     </ul>
     </div>
 
     <div class="tools">
     
     	<ul class="toolbar">
-        <li class="click"><span><img src="../images/t01.png" /></span><a href="workInsert.html" target="_self">添加</a></li>
+        <li class="click"><span><img src="../images/t01.png" /></span><a href="userInsert.jsp" target="rightFrame">添加</a></li>
         <li class="click"><img src="../images/trash.png" /></span><a href="#" target="rightFrame">删除</a></li>
         </ul>
     </div>
@@ -82,14 +77,16 @@ $(document).ready(function(e) {
           <td><table class="tablelist">
               <thead>
                 <tr>
-                <th width="3%"><input name="" type="checkbox" value="" checked="checked"/></th>
+                <th><input name="" type="checkbox" value="" checked="checked"/></th>
                   <th width="7%">工号<i class="sort"><img src="../images/px.gif" /></i></th>
                   <th width="11%">姓名</th>
-                  <th width="10%">加班日期</th>
-                  <th width="9%">开始时间</th>
-                  <th width="11%">终了时间</th>
-                  <th width="7%">加班时间小计</th>
-                  <th width="8%">状态</th>
+                  <th width="10%">部门</th>
+                  <th width="9%">职务</th>
+                  <th width="11%">注册时间</th>
+                  <th width="5%">性别</th>
+                  <th width="10%">手机</th>
+                  <th width="9%">出生日期</th>
+                  <th width="12%">邮箱</th>
                   <th width="13%">操作</th>
                 </tr>
               </thead>
@@ -98,56 +95,66 @@ $(document).ready(function(e) {
                  <td><input name="" type="checkbox" value="" /></td>
                   <td>20130901</td>
                   <td>admin</td>
-                  <td>2013-09-09 </td>
-                  <td>16:00</td>
-                  <td>22:00</td>
-                  <td>5.0</td>
-                  <td>申请中</td>
-                 <td><span><a href="workDetail.html" target="_self" class="tablelink"><img src="../images/user_edit.png" />详细</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                  <td>研发一部</td>
+                  <td>员工</td>
+                  <td>2013-09-09 15:05</td>
+                  <td>男</td>
+                  <td>13356789067</td>
+                  <td>1980-09-09</td>
+                  <td>admin_163.com</td>
+                  <td><span><a href="userUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
                 </tr>
                 <tr>  
                  <td><input name="" type="checkbox" value="" /></td>              
                   <td>20130902</td>
                   <td>wanglin</td>
-                  <td>2018-09-09 </td>
-                  <td>16:00</td>
-                  <td>21:00</td>
-                  <td>4.0</td>
-                  <td>申请中</td>
-                  <td><span><a href="workDetail.html" class="tablelink"><img src="../images/user_edit.png" />详细</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                  <td>研发二部</td>
+                  <td>部门主管</td>
+                  <td>2013-09-09 15:05</td>
+                  <td>男</td>
+                  <td>13356787689</td>
+                  <td>1983-09-09</td>
+                  <td>wanglin_inspur.com</td>
+                  <td><span><a href="userUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
                 </tr>
                 <tr>
                   <td><input name="" type="checkbox" value="" /></td>
                   <td>20130903</td>
                   <td>wangli</td>
-                  <td>2015-09-10 </td>
-                  <td>20:00</td>
-                  <td>22:00</td>
-                  <td>2.0</td>
-                  <td>已批准</td>
-                  <td><span><a href="workDetail.html" class="tablelink"><img src="../images/user_edit.png" />详细</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                  <td>研发一部</td>
+                  <td>部门主管</td>
+                  <td>2013-09-09 15:05</td>
+                  <td>男</td>
+                  <td>13356789099</td>
+                  <td>1989-09-09</td>
+                  <td>ispur</td>
+                  <td><span><a href="userUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
                 </tr>
                 <tr>
                   <td><input name="" type="checkbox" value="" /></td>
                   <td>20130904</td>
                   <td>zhangli</td>
-                  <td>2015-09-09 </td>
-                  <td>05:00</td>
-                  <td>06:00</td>
-                  <td>1.0</td>
-                  <td>已批准</td>
-                   <td><span><a href="workDetail.html" class="tablelink"><img src="../images/user_edit.png" />详细</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                  <td>测试部</td>
+                  <td>员工</td>
+                  <td>2013-09-09 15:05</td>
+                  <td>女</td>
+                  <td>18678987890</td>
+                  <td>1989-04-09</td>
+                  <td>admin_163.com</td>
+                   <td><span><a href="userUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
                 </tr>
                 <tr>
                   <td><input name="" type="checkbox" value="" /></td>
                   <td>20130905</td>
                   <td>zhang_lin</td>
-                  <td>2015-09-09 </td>
-                  <td>16:00</td>
-                  <td>22:00</td>
-                  <td>5.0</td>
-                  <td>已批准</td>
-                  <td><span><a href="workDetail.html" class="tablelink"><img src="../images/user_edit.png" />详细</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                  <td>测试部</td>
+                  <td>员工</td>
+                  <td>2013-09-09 15:05</td>
+                  <td>男</td>
+                  <td>13305317890</td>
+                  <td>1989-09-12</td>
+                  <td>admin_163.com</td>
+                  <td><span><a href="userUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
                 </tr>
               </tbody>
           </table></td>
