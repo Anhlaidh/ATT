@@ -1,15 +1,15 @@
 package com.ATT.bean;
 
 import javax.xml.crypto.Data;
-import java.sql.Date;
+import java.util.Date;
 
 public class UserInfo {
     long	id;
     String	account;
     String	password;
     String	name;
-    long	departmentId;
-    int	sex;
+    String	departmentId;
+    String	sex;
     String	birthday;
     String	mobile;
     String	email;
@@ -34,10 +34,6 @@ public class UserInfo {
         this.account = account;
     }
 
-    public void setCreate_time(java.util.Date create_time) {
-        this.create_time = create_time;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -54,19 +50,19 @@ public class UserInfo {
         this.name = name;
     }
 
-    public long getDepartmentId() {
+    public String getDepartmentId() {
         return departmentId;
     }
 
-    public void setDepartmentId(long departmentId) {
+    public void setDepartmentId(String departmentId) {
         this.departmentId = departmentId;
     }
 
-    public int getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(int sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
@@ -102,7 +98,7 @@ public class UserInfo {
         this.usertype = usertype;
     }
 
-    public java.util.Date getCreate_time() {
+    public Date getCreate_time() {
         return create_time;
     }
 

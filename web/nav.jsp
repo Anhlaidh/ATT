@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
@@ -21,53 +22,53 @@
                 <li class="nav-li current">
                 	<a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">用户管理</span></a>
                     <ul class="subnav">
-                     <li class="subnav-li" href="index.html" data-id="1"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">首页</span></a></li>
-                      <li class="subnav-li" href="user/userSearch.html" data-id="2"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">用户管理</span></a></li>
+                     <li class="subnav-li" href="index.jsp" data-id="1"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">首页</span></a></li>
+                      <li class="subnav-li" href="user/userSearch.jsp" data-id="2"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">用户管理</span></a></li>
                     </ul>
                 </li>
                 <li class="nav-li last-nav-li">
                 	<a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">部门管理</span></a>
                     <ul class="subnav">
-                    	<li class="subnav-li" data-id="10"  href="dept/deptSearch.html" ><a href="javascript:;" class="ue-clear" ><i class="subnav-icon"></i><span class="subnav-text">部门管理</span></a></li>
+                    	<li class="subnav-li" data-id="10"  href="dept/deptSearch.jsp" ><a href="javascript:;" class="ue-clear" ><i class="subnav-icon"></i><span class="subnav-text">部门管理</span></a></li>
                     </ul>
                 </li>
             
                 <li class="nav-li last-nav-li">
                 	<a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">日报管理</span></a>
                     <ul class="subnav">
-                    	<li class="subnav-li" data-id="12"  href="report/reportSearch.html" ><a href="javascript:;" class="ue-clear" ><i class="subnav-icon"></i><span class="subnav-text">日报管理</span></a></li>
+                    	<li class="subnav-li" data-id="12"  href="report/reportSearch.jsp" ><a href="javascript:;" class="ue-clear" ><i class="subnav-icon"></i><span class="subnav-text">日报管理</span></a></li>
                     </ul>
                 </li>
                  <li class="nav-li last-nav-li">
                 	<a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">加班管理</span></a>
                     <ul class="subnav">
-                    	<li class="subnav-li" data-id="13"  href="workmanager/workSearch.html" ><a href="javascript:;" class="ue-clear" ><i class="subnav-icon"></i><span class="subnav-text">加班申请</span></a></li>
+                    	<li class="subnav-li" data-id="13"  href="workmanager/workSearch.jsp" ><a href="javascript:;" class="ue-clear" ><i class="subnav-icon"></i><span class="subnav-text">加班申请</span></a></li>
                     </ul>
                 </li>
                 <li class="nav-li last-nav-li">
                 	<a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">休假管理</span></a>
                     <ul class="subnav">
-                    	<li class="subnav-li" data-id="14"  href="restmanager/restSearch.html" ><a href="javascript:;" class="ue-clear" ><i class="subnav-icon"></i><span class="subnav-text">休假申请</span></a></li>
+                    	<li class="subnav-li" data-id="14"  href="restmanager/restSearch.jsp" ><a href="javascript:;" class="ue-clear" ><i class="subnav-icon"></i><span class="subnav-text">休假申请</span></a></li>
                     </ul>
                 </li>
                  <li class="nav-li last-nav-li">
                 	<a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">审批管理</span></a>
                     <ul class="subnav">
-                    	<li class="subnav-li" data-id="15"  href="worksyouninn/worksyouninnSearch.html" ><a href="javascript:;" class="ue-clear" ><i class="subnav-icon"></i><span class="subnav-text">加班审批</span></a></li>
+                    	<li class="subnav-li" data-id="15"  href="worksyouninn/worksyouninnSearch.jsp" ><a href="javascript:;" class="ue-clear" ><i class="subnav-icon"></i><span class="subnav-text">加班审批</span></a></li>
                     
-                    	<li class="subnav-li" data-id="16"  href="restsyouninn/restsyouninnSearch.html" ><a href="javascript:;" class="ue-clear" ><i class="subnav-icon"></i><span class="subnav-text">休假审批</span></a></li>
+                    	<li class="subnav-li" data-id="16"  href="restsyouninn/restsyouninnSearch.jsp" ><a href="javascript:;" class="ue-clear" ><i class="subnav-icon"></i><span class="subnav-text">休假审批</span></a></li>
                     </ul>
                 </li>
                  <li class="nav-li last-nav-li">
                 	<a  href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">个人信息修改</span></a>
                  <ul class="subnav">
-                  <li class="subnav-li" data-id="17"  href="user/userPasswordUpdate.html" ><a href="javascript:;" class="ue-clear" ><i class="subnav-icon"></i><span class="subnav-text">个人信息修改</span></a></li>
+                  <li class="subnav-li" data-id="17"  href="user/userPasswordUpdate.jsp" ><a href="javascript:;" class="ue-clear" ><i class="subnav-icon"></i><span class="subnav-text">个人信息修改</span></a></li>
                     </ul>
                 </li>
                 <li class="nav-li last-nav-li">
                 	<a  href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">我的桌面</span></a>
                  <ul class="subnav">
-                  <li class="subnav-li" data-id="18"  href="mydesktop/mydesktop.html" ><a href="javascript:;" class="ue-clear" ><i class="subnav-icon"></i><span class="subnav-text">我的桌面</span></a></li>
+                  <li class="subnav-li" data-id="18"  href="mydesktop/mydesktop.jsp" ><a href="javascript:;" class="ue-clear" ><i class="subnav-icon"></i><span class="subnav-text">我的桌面</span></a></li>
                     </ul>
                 </li>
             </ul>

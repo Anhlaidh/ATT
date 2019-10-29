@@ -1,8 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>用户添加</title>
+<title>部门修改</title>
 <link href="../css/style2.css" rel="stylesheet" type="text/css" />
 <link href="../css/select.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../js/jquery.js"></script>
@@ -35,6 +36,7 @@ function saveButton(){
 }
 </script>
 
+
 </head>
 
 <body>
@@ -43,7 +45,7 @@ function saveButton(){
     <span>位置：</span>
     <ul class="placeul">
     <li><a href="#">部门管理</a></li>
-    <li><a href="#">添加部门</a></li>
+    <li><a href="#">修改部门</a></li>
     </ul>
     </div>
     
@@ -53,24 +55,24 @@ function saveButton(){
     
     <ul class="forminfo">
     <li>
-      <label>部门编号 <font color="red">*</font></label>
-      </label><input name="" type="text" class="dfinput" /></li>
+      <label>部门编号</label>
+      </label><input name="" type="text" class="dfinput" readonly="readonly" value="10001"/></li>
     <li>
-      <label>部门名称 <font color="red">*</font></label>
-      <input name="" type="text" class="dfinput" />
+      <label>部门名称</label>
+      <input name="" type="text" class="dfinput" value="研发一部"/>
     </li>
-    <li>
-      <label>负责人</label>
+     <li>
+      <label>负责人 </label>
        <div class="vocation">
     <select class="select3">
     <option value="">--请选择--</option>
     <option>余力</option>
     <option>张安娜</option>
-    <option>张楠</option>
+    <option selected>张楠</option>
     <option>张丽丽</option>
     </select>
     </div>
-    </li> 
+    </li>
     <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认保存" onclick="saveButton()"/></li>
     </ul>
     </div>

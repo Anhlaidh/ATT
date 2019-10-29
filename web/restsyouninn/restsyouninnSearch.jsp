@@ -1,8 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>加班管理</title>
+<title>休假审批</title>
 <link href="../css/style2.css" rel="stylesheet" type="text/css" />
 <link href="../css/select.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../js/jquery.js"></script>
@@ -41,7 +42,8 @@ $(document).ready(function(e) {
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">休假管理</a></li>
+    <li><a href="#">审批</a></li>
+    <li><a href="#">休假审批</a></li>
     </ul>
     </div>
    
@@ -50,32 +52,16 @@ $(document).ready(function(e) {
     <br />
     <ul class="seachform">
     <li>
-      <label> 休假日期:</label><input name="" type="text" class="scinput"  value="请选择开始日期" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/></li>
-     <li>  <label> 到</label><input name="" type="text" class="scinput" value="请选择结束日期" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/></li>
+      <label> 休假日期:</label><input name="" type="text" class="scinput"  value="请选择开始日期"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"  /></li>
+     <li>  <label> 到</label><input name="" type="text" class="scinput" value="请选择结束日期"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"</li>
     <li>
-    <label>状态：</label>  
-    <div class="vocation">
-    <select class="select3">
-    <option>--请选择--</option>
-    <option>审批中</option>
-    <option>已批准</option>
-    <option>已驳回</option>
-    </select>
-    </div>
+    <label>姓名：</label>  
+    <input name="" type="text" class="scinput" />
     </li>
     <li><label>&nbsp;</label><input name="" type="button" class="scbtn" value="查询"/></li>
     </ul>
     </div>
 
-    <div class="tools">
-    
-    	<ul class="toolbar">
-        <li class="click"><span><img src="../images/t01.png" /></span><a href="restInsert.html" target="_self">添加</a></li>
-        <li class="click"><img src="../images/trash.png" /></span><a href="#" target="rightFrame">删除</a></li>
-        </ul>
-    </div>
-    
-    
     <table class="tablelist"><tbody><tr><td><table class="tablelist"><tbody><tr><td><table class="tablelist">
       <tbody>
         <tr>
@@ -86,11 +72,10 @@ $(document).ready(function(e) {
                   <th width="7%">工号<i class="sort"><img src="../images/px.gif" /></i></th>
                   <th width="11%">姓名</th>
                   <th width="10%">休假开始日期</th>
-                  <th width="9%">休假开始时间</th>
+                  <th width="9%">开始时间</th>
                   <th width="10%">休假结束日期</th>
                   <th width="11%">休假终了时间</th>
-                  <th width="7%">休假时间小计</th>
-                  <th width="8%">状态</th>
+                  <th width="7%">休假原因</th>
                   <th width="13%">操作</th>
                 </tr>
               </thead>
@@ -103,9 +88,9 @@ $(document).ready(function(e) {
                   <td>08:30</td>
                   <td>2013-09-09 </td>
                   <td>17:30</td>
-                  <td>8.0</td>
-                  <td>申请中</td>
-                 <td><span><a href="restUpdate.html" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                  <td>结婚</td>
+                 
+                 <td><span><a href="#" class="tablelink"><img src="../images/valid.png" /></a> <a href="#" class="tablelink" onclick="confirm('确定要驳回当前消息？')"> <img src="../images/error.png" /></a></span></td>
                 </tr>
                 <tr>  
                  <td><input name="" type="checkbox" value="" /></td>              
@@ -115,9 +100,9 @@ $(document).ready(function(e) {
                   <td>08:30</td>
                   <td>2018-09-10 </td>
                   <td>17:30</td>
-                  <td>16.0</td>
-                  <td>申请中</td>
-                  <td><span><a href="restUpdate.html" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                  <td>年假</td>
+             
+                 <td><span><a href="#" class="tablelink"><img src="../images/valid.png" /> <a href="#" class="tablelink"  onclick="confirm('确定通过当前消息？')" /></a><a href="#" class="tablelink" onclick="confirm('确定要驳回当前消息？')"><img src="../images/error.png" /></a></span></td>
                 </tr>
                 <tr>
                   <td><input name="" type="checkbox" value="" /></td>
@@ -127,9 +112,8 @@ $(document).ready(function(e) {
                   <td>08:30</td>
                   <td>2015-09-10 </td>
                   <td>17:30</td>
-                  <td>8.0</td>
-                  <td>已批准</td>
-                  <td><span><a href="restUpdate.html" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                  <td>生病</td>
+                 <td><span><a href="#" class="tablelink"><img src="../images/valid.png" /> <a href="#" class="tablelink"  onclick="confirm('确定通过当前消息？')" /></a><a href="#" class="tablelink" onclick="confirm('确定要驳回当前消息？')"> <img src="../images/error.png" /></a></span></td>
                 </tr>
                 <tr>
                   <td><input name="" type="checkbox" value="" /></td>
@@ -139,9 +123,8 @@ $(document).ready(function(e) {
                   <td>08:30</td>
                   <td>2015-09-09 </td>
                   <td>17:30</td>
-                  <td>8.0</td>
-                  <td>已批准</td>
-                   <td><span><a href="restUpdate.html" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                  <td>年假</td>
+                <td><span><a href="#" class="tablelink"><img src="../images/valid.png" /> <a href="#" class="tablelink"  onclick="confirm('确定通过当前消息？')" /></a> <a href="#" class="tablelink" onclick="confirm('确定要驳回当前消息？')"> <img src="../images/error.png" /></a></span></td>
                 </tr>
                 <tr>
                   <td><input name="" type="checkbox" value="" /></td>
@@ -151,9 +134,8 @@ $(document).ready(function(e) {
                   <td>08:30</td>
                   <td>2015-09-09 </td>
                   <td>17:30</td>
-                  <td>8.0</td>
-                  <td>已批准</td>
-                  <td><a href="restUpdate.html" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></restUpdatespan></td>
+                  <td>年假</td>
+                  <td><span><a href="#" class="tablelink"><img src="../images/valid.png" /> <a href="#" class="tablelink"  onclick="confirm('确定通过当前消息？')" /></a> <a href="#" class="tablelink" onclick="confirm('确定要驳回当前消息？')"> <img src="../images/error.png" /></a></span></td>
                 </tr>
               </tbody>
           </table></td>
