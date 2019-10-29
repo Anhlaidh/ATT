@@ -16,7 +16,7 @@
 <body>
 <div class="container">
     <section id="content">
-        <form action="/LoginServlet">
+        <form action="/LoginServlet" method="post">
             <h1>考勤管理系统</h1>
             <div>
                 <input type="text" placeholder="用户名" required="" id="username" name="username" />

@@ -14,17 +14,24 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
         Username = request.getParameter("username");
         Password = request.getParameter("password");
         LoginService Login = new LoginService();
-        UserInfo userInfo = Login.login(Username, Password);
-        if ("null".equals(userInfo)){
-            request.getRequestDispatcher("login.jsp");
+
+       UserInfo userInfo = Login.login(Username, Password);
+//        response.sendRedirect(request.getContextPath()+"/main.jsp");
+//        response.sendRedirect(request.getContextPath()+"/login.jsp");
+
+
+        if (userInfo==null){
+            request.getRequestDispatcher(request.getContextPath()+"/login.jsp").forward(request,response);
+            return;
         }
         else {
             HttpSession session = request.getSession();
             session.setAttribute("UserInfo",userInfo);
-            request.getRequestDispatcher("main.jsp");
-
+            request.getRequestDispatcher(request.getContextPath()+"/main.jsp").forward(request,response);
+            return;
 
         }
+
 
 
 //        UserInfo UserInfo = null;

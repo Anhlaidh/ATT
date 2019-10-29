@@ -7,26 +7,38 @@ import common.util.CommonUtils;
 import java.sql.SQLException;
 
 public class LoginService {
-    UserInfo UserInfo = null;
+    UserInfo UserInfo = new UserInfo();
     public UserInfo login(String account ,String password){
-
         try {
             UserInfo = initializeBean.get(account);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        if ("null".equals(UserInfo)){
+            return null;
+        }
+        else if (account.equals(UserInfo.getAccount())&&password.equals(UserInfo.getPassword())){
+            return UserInfo;
+        }
+        else return null;
 
-        if (UserInfo == null || CommonUtils.isEmptyString(UserInfo.getAccount())) {
-            return null;
+//        try {
+//            UserInfo = initializeBean.get(account);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        if (UserInfo == null || CommonUtils.isEmptyString(UserInfo.getAccount())) {
+//            return null;
+//
+//        }
+//        if (!UserInfo.getPassword().equals(password)) {
+//            return null;
+//        }
+//        if (UserInfo.getState() != 0) {
+//            return null;
+//        }
 
-        }
-        if (!UserInfo.getPassword().equals(password)) {
-            return null;
-        }
-        if (UserInfo.getState() != 0) {
-            return null;
-        }
-        return UserInfo;
 
     }
 }
