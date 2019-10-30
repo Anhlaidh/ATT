@@ -1,4 +1,9 @@
+
+<%@ page import="com.ATT.bean.UserInfo" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.ATT.bean.DepartmentBean" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -15,7 +20,7 @@
         cssPath : './index.css'
     });
   </script>
-  
+
 <script type="text/javascript">
 $(document).ready(function(e) {
     $(".select1").uedSelect({
@@ -33,6 +38,7 @@ $(document).ready(function(e) {
 
 <body>
 
+
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -43,14 +49,16 @@ $(document).ready(function(e) {
 	<!--查询条件-->
     <br />
     <br />
-    <ul class="seachform">
-  
-    <li>
-      <label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;部门名称</label><input name="" type="text" class="scinput" /></li>
+    <form action="/DeptPageListServlet">
+        <ul class="seachform">
+1
+            <li>
+                <label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;部门名称</label><input name="management" type="text" class="scinput" /></li>
 
-    <li><label>&nbsp;</label><input name="" type="button" class="scbtn" value="查询"/></li>
-    
-    </ul>
+            <li><label>&nbsp;</label><input name="" type="submit" class="scbtn" value="查询"/></li>
+
+        </ul>
+    </form>
     </div>
 
     <div class="tools">
@@ -78,51 +86,70 @@ $(document).ready(function(e) {
                 </tr>
               </thead>
               <tbody>
+
+
                 <tr>
-                 <td><input name="" type="checkbox" value="" /></td>
-                  <td>10001</td>
-                  <td>研发一部</td>
-                  <td>张楠</td>
-                  <td>20</td>
-                  <td>2013-09-09 15:05</td>
-                  <td><span><a href="deptUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
-                </tr>
-                <tr>  
-                 <td><input name="" type="checkbox" value="" /></td>              
-                  <td>10002</td>
-                  <td>研发二部</td>
-                  <td>张婧研</td>
-                  <td>10</td>
-                  <td>2013-09-09 15:05</td>
-                  <td><span><a href="deptUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
-                </tr>
-                <tr>
-                  <td><input name="" type="checkbox" value="" /></td>
-                  <td>10003</td>
-                  <td>研发三部</td>
-                  <td>张东</td>
-                  <td>30</td>
-                  <td>2013-09-09 15:05</td>
-                  <td><span><a href="deptUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
-                </tr>
-                <tr>
-                  <td><input name="" type="checkbox" value="" /></td>
-                  <td>10004</td>
-                  <td>测试部</td>
-                  <td>王丽丽</td>
-                  <td>40</td>
-                  <td>2013-09-09 15:05</td>
-                   <td><span><a href="deptUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
-                </tr>
-                <tr>
-                  <td><input name="" type="checkbox" value="" /></td>
-                  <td>10005</td>
-                  <td>质量保证部</td>
-                  <td>余力</td>
-                  <td>20</td>
-                  <td>2013-09-09 15:05</td>
-                  <td><span><a href="deptUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
-                </tr>
+<%--                 <td><input name="" type="checkbox" value="" /></td>--%>
+
+<%--                    <c:forEach >--%>
+<c:forEach items="${sessionScope.departmentList}" var="list">
+    <tr>
+    <td><input name="" type="checkbox" value=""/></td>
+    <td>${list.departmentId}</td>
+    <td>${list.departmentName}</td>
+    <td>${list.name}</td>
+    <td>${list.totalUser}</td>
+    <td>${list.createTime}</td>
+                    <td><span><a href="deptUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+    </tr>
+                </c:forEach>
+
+
+    <%--                    </c:forEach>--%>
+
+<%--                  <td>10001</td>--%>
+<%--                  <td>研发一部</td>--%>
+<%--                  <td>张楠</td>--%>
+<%--                  <td>20</td>--%>
+<%--                  <td>2013-09-09 15:05</td>--%>
+<%--                  <td><span><a href="deptUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>--%>
+<%--                </tr>--%>
+<%--                <tr>  --%>
+<%--                 <td><input name="" type="checkbox" value="" /></td>              --%>
+<%--                  <td>10002</td>--%>
+<%--                  <td>研发二部</td>--%>
+<%--                  <td>张婧研</td>--%>
+<%--                  <td>10</td>--%>
+<%--                  <td>2013-09-09 15:05</td>--%>
+<%--                  <td><span><a href="deptUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>--%>
+<%--                </tr>--%>
+<%--                <tr>--%>
+<%--                  <td><input name="" type="checkbox" value="" /></td>--%>
+<%--                  <td>10003</td>--%>
+<%--                  <td>研发三部</td>--%>
+<%--                  <td>张东</td>--%>
+<%--                  <td>30</td>--%>
+<%--                  <td>2013-09-09 15:05</td>--%>
+<%--                  <td><span><a href="deptUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>--%>
+<%--                </tr>--%>
+<%--                <tr>--%>
+<%--                  <td><input name="" type="checkbox" value="" /></td>--%>
+<%--                  <td>10004</td>--%>
+<%--                  <td>测试部</td>--%>
+<%--                  <td>王丽丽</td>--%>
+<%--                  <td>40</td>--%>
+<%--                  <td>2013-09-09 15:05</td>--%>
+<%--                   <td><span><a href="deptUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>--%>
+<%--                </tr>--%>
+<%--                <tr>--%>
+<%--                  <td><input name="" type="checkbox" value="" /></td>--%>
+<%--                  <td>10005</td>--%>
+<%--                  <td>质量保证部</td>--%>
+<%--                  <td>余力</td>--%>
+<%--                  <td>20</td>--%>
+<%--                  <td>2013-09-09 15:05</td>--%>
+<%--                  <td><span><a href="deptUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>--%>
+<%--                </tr>--%>
               </tbody>
           </table></td>
         </tr>

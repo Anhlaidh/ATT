@@ -8,7 +8,7 @@ import common.util.Connet;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class initializeBean {
+public class initializeUserInfo {
 
 
 
@@ -32,8 +32,7 @@ public class initializeBean {
            UserInfo.setState(Integer.parseInt(Query.getString("STATE")));
 
        }
-       UserInfo.getAccount();
-       UserInfo.getBirthday();
+
        return UserInfo;
 
     }

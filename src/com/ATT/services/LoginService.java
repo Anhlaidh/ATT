@@ -1,8 +1,7 @@
 package com.ATT.services;
 
 import com.ATT.bean.UserInfo;
-import com.ATT.dao.initializeBean;
-import common.util.CommonUtils;
+import com.ATT.dao.initializeUserInfo;
 
 import java.sql.SQLException;
 
@@ -10,7 +9,7 @@ public class LoginService {
     UserInfo UserInfo = new UserInfo();
     public UserInfo login(String account ,String password){
         try {
-            UserInfo = initializeBean.get(account);
+            UserInfo = initializeUserInfo.get(account);
         } catch (SQLException e) {
             e.printStackTrace();
         }

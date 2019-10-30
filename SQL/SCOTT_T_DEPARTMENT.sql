@@ -1,11 +1,11 @@
 create table T_DEPARTMENT
-(
-    DEPARTMENT_ID   VARCHAR2(20)  default null not null,
-    DEPARTMENT_NAME VARCHAR2(255) default null not null,
-    MANAGER         VARCHAR2(255) default null,
-    TOTAL_USER      NUMBER(3)     default 0    not null,
-    CREATE_TIME     DATE          default null not null
-)
+                                                                                                                                                                                               (
+                                                                                                                                                                                                   DEPARTMENT_ID   VARCHAR2(20)  default null not null,
+                                                                                                                                                                                                   DEPARTMENT_NAME VARCHAR2(255) default null not null,
+                                                                                                                                                                                                   MANAGER         VARCHAR2(255) default null,
+                                                                                                                                                                                                   TOTAL_USER      NUMBER(3)     default 0    not null,
+                                                                                                                                                                                                   CREATE_TIME     DATE          default null not null
+                                                                                                                                                                                               )
 /
 
 INSERT INTO SCOTT.T_DEPARTMENT (DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER, TOTAL_USER, CREATE_TIME) VALUES ('10001', '研发一部', '张楠', 20, TO_DATE('2013-09-09 15:05:00', 'YYYY-MM-DD HH24:MI:SS'));

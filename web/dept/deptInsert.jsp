@@ -52,7 +52,7 @@ function saveButton(){
     <div class="formbody">
     
     <div class="formtitle"><span>基本信息</span></div>
-    
+        <form action="">
     <ul class="forminfo">
     <li>
       <label>部门编号 <font color="red">*</font></label>
@@ -73,8 +73,11 @@ function saveButton(){
     </select>
     </div>
     </li> 
-    <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认保存" onclick="saveButton()"/></li>
+    <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认保存" <%--onclick="saveButton()"--%>/></li>
     </ul>
+        </form>
+
+
     </div>
 </form>
 </body>
