@@ -1,0 +1,19 @@
+create table T_USER_INFO
+(
+    ID            VARCHAR2(20),
+    ACCOUNT       VARCHAR2(255),
+    PASSWORD      VARCHAR2(255),
+    NAME          VARCHAR2(20),
+    DEPARTMENT_ID VARCHAR2(20),
+    SEX           CHAR,
+    BIRTHDAY      VARCHAR2(20),
+    MOBILE        VARCHAR2(11),
+    EMAIL         VARCHAR2(255),
+    USER_TYPE     CHAR,
+    MYLEVEL       CHAR,
+    CREATE_TIME   DATE,
+    STATE         CHAR
+)
+/
+
+INSERT INTO SCOTT.T_USER_INFO (ID, ACCOUNT, PASSWORD, NAME, DEPARTMENT_ID, SEX, BIRTHDAY, MOBILE, EMAIL, USER_TYPE, MYLEVEL, CREATE_TIME, STATE) VALUES ('1', '1', 'root', 'root', 'null', 'm', 'null', 'null', 'null', '0', '0', TO_DATE('2019-10-25 00:00:00', 'YYYY-MM-DD HH24:MI:SS'), '0');

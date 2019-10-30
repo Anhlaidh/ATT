@@ -10,11 +10,14 @@ import java.sql.SQLException;
 public class Search {
 
 
-    public static ResultSet Search(String value){
+    public static ResultSet Search(String value,String table){
         Connection connection = Connet.Conncet();
         ResultSet resultSet = null;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from T_USER_INFO where ACCOUNT = ?");
+            PreparedStatement preparedStatement = null;
+            if (table.equals("T_USER_INFO")) {
+                preparedStatement = connection.prepareStatement("select * from T_USER_INFO where ACCOUNT = ?");
+            }
             preparedStatement.setString(1,value);
 
              resultSet = preparedStatement.executeQuery();

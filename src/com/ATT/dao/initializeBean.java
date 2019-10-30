@@ -3,7 +3,6 @@ package com.ATT.dao;
 import com.ATT.bean.UserInfo;
 import com.ATT.dao.Search;
 import common.util.Connet;
-import org.jetbrains.annotations.NotNull;
 
 
 import java.sql.ResultSet;
@@ -12,11 +11,11 @@ import java.sql.SQLException;
 public class initializeBean {
 
 
-    @NotNull
+
     public static UserInfo get(String Account) throws SQLException {
 
         UserInfo UserInfo = new UserInfo();
-        ResultSet Query = Search.Search(Account);
+        ResultSet Query = Search.Search(Account,"T_USER_INFO");
        while (Query.next()){
            UserInfo.setName(Query.getString("NAME"));
            UserInfo.setId(Integer.parseInt(Query.getString("ID")));

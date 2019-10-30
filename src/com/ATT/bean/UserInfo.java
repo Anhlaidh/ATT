@@ -4,19 +4,19 @@ import javax.xml.crypto.Data;
 import java.util.Date;
 
 public class UserInfo {
-    long	id;
-    String	account;
-    String	password;
-    String	name;
-    String	departmentId;
-    String	sex;
-    String	birthday;
-    String	mobile;
-    String	email;
-    int	usertype;
-    java.util.Date create_time;
-    int	level;
-    int	state;
+  private   long	id;
+  private   String	account;
+  private   String	password;
+  private   String	name;
+  private   String	departmentId;
+  private   String	sex;
+  private   String	birthday;
+  private   String	mobile;
+  private   String	email;
+  private   int	usertype;
+  private   java.util.Date create_time;
+  private   int	level;
+  private   int	state;
 
     public long getId() {
         return id;
