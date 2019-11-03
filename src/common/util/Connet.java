@@ -15,7 +15,7 @@ public class Connet {
 //        System.out.println(Conncet());
 //    }
 
-    static private final String URL = "jdbc:oracle:thin:@localhost:1521:ATT";
+    static private final String URL = "jdbc:oracle:thin:@localhost:1521:orcl";
     static private final String USERNAME="scott";
     static private final String PWD="tiger";
     static Connection connection;
