@@ -1,5 +1,7 @@
 package com.ATT.controller;
 
+import com.ATT.bean.DepartmentBean;
+import com.ATT.dao.Insert;
 import com.ATT.services.DeptGetList;
 import com.ATT.services.DeptInsert;
 
@@ -20,8 +22,10 @@ public class DeptInsertServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String dept_id = request.getParameter("Dept_id");
-        request.getParameter("Dept_name");
-
+        String dept_name = request.getParameter("Dept_name");
+        String dept_manager = request.getParameter("Dept_manager");
+        DeptInsert.DeptInsert(dept_id,dept_name,dept_manager);
+        request.getRequestDispatcher(request.getContextPath()+"dept/deptSearch.jsp").forward(request,response);
 
 
 

@@ -15,7 +15,7 @@ public class initializeUserInfo {
     public static UserInfo get(String Account) throws SQLException {
 
         UserInfo UserInfo = new UserInfo();
-        ResultSet Query = Search.Search("*",Account,"T_USER_INFO");
+        ResultSet Query = Search.Search(Account,"T_USER_INFO");
        while (Query.next()){
            UserInfo.setName(Query.getString("NAME"));
            UserInfo.setId(Integer.parseInt(Query.getString("ID")));
