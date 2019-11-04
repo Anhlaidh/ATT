@@ -14,7 +14,7 @@ public class initializeDepartment {
     public static LinkedList get(String name) throws SQLException{
 
         LinkedList list = new LinkedList();
-        ResultSet query = Search.Search(name, "SCOTT.T_DEPARTMENT");
+        ResultSet query = Search.Search("*",name, "SCOTT.T_DEPARTMENT");
         while (query.next()){
             DepartmentBean departmentBean = new DepartmentBean();
             departmentBean.setDepartmentId(query.getString("DEPARTMENT_ID"));
@@ -26,7 +26,7 @@ public class initializeDepartment {
 
         }
         query.close();
-        Search.Search(name,"SCOTT.T_DEPARTMENT").close();
+        Search.Search("*",name,"SCOTT.T_DEPARTMENT").close();
         return list;
     }
 }

@@ -8,23 +8,46 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Search {
+//    public static void main(String[] args) throws SQLException {
+//        ResultSet all = Search("*", "ALL", "T_DEPARTMENT");
+//        while (all.next()){
+//            System.out.println(all.getString("MANAGER"));
+//        }
+//    }
 
 
-    public static ResultSet Search(String key,String table){
+    public static ResultSet Search(String column,String key,String table){
         Connection connection = Connet.Conncet();
         ResultSet resultSet = null;
         try {
             PreparedStatement preparedStatement = null;
             if (table.equals("T_USER_INFO")) {
-                preparedStatement = connection.prepareStatement("select * from T_USER_INFO where ACCOUNT = ?");
+                if (!key.equals("ALL"))
+                {
+                    preparedStatement = connection.prepareStatement("select ? from T_USER_INFO where ACCOUNT = ?");
+                    preparedStatement.setString(1,column);
+                    preparedStatement.setString(2,key);
+                }else
+
+                preparedStatement=connection.prepareStatement("select * from T_USER_INFO");
+
             }
 //            (table.equals("T_DEPARTMENT")
-            else  {
-                preparedStatement = connection.prepareStatement("select * from   T_DEPARTMENT where DEPARTMENT_NAME = ?");
-            }
-            preparedStatement.setString(1,key);
+            else  if (table.equals("T_DEPARTMENT")){
+                if (!key.equals("ALL")){
+                    preparedStatement = connection.prepareStatement("select ? from   T_DEPARTMENT where DEPARTMENT_NAME = ?");
+                    preparedStatement.setString(1,column);
+                    preparedStatement.setString(2,key);
 
-             resultSet = preparedStatement.executeQuery();
+                }else
+
+                preparedStatement=connection.prepareStatement("select * from T_DEPARTMENT");
+
+            }
+
+
+            assert preparedStatement != null;
+            resultSet = preparedStatement.executeQuery();
 
         } catch (SQLException e) {
             System.out.println("prepareStatementError");

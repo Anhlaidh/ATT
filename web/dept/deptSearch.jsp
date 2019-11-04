@@ -51,7 +51,7 @@ $(document).ready(function(e) {
     <br />
     <form action="/DeptPageListServlet">
         <ul class="seachform">
-1
+
             <li>
                 <label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;部门名称</label><input name="management" type="text" class="scinput" /></li>
 
