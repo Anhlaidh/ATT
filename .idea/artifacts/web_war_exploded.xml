@@ -12,6 +12,7 @@
           <element id="library" level="project" name="lib" />
           <element id="library" level="project" name="jstl" />
           <element id="library" level="project" name="standard" />
+          <element id="library" level="project" name="lib1" />
         </element>
       </element>
     </root>
