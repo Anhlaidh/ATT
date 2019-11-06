@@ -20,6 +20,7 @@ public class Update {
                 preparedStatement.setString(3,departmentBean.getName());
                 preparedStatement.setString(4,id);
                 executeUpdate = preparedStatement.executeUpdate();
+
             }
 
         } catch (SQLException e) {

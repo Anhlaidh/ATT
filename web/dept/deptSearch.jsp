@@ -112,7 +112,7 @@ $(document).ready(function(e) {
     <td>${list.name}</td>
     <td>${list.totalUser}</td>
     <td>${list.createTime}</td>
-                    <td><span><a href="/dept/deptUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="/DeptDelOne?DepartmentId=${list.departmentId}" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                    <td><span><a href="/dept/deptUpdate.jsp?id=${list.departmentId}&dept_name=${list.departmentName}" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="/DeptDelOne?DepartmentId=${list.departmentId}" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
     </tr>
                 </c:forEach>
                 <%

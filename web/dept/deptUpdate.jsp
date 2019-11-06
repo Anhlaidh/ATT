@@ -47,7 +47,7 @@ function saveButton(){
     LinkedList manager = initializeUserInfo.get("ALL");
     session.setAttribute("managers",manager);
 %>
-<form action="/">
+<form action="/DeptUpdate">
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -63,15 +63,15 @@ function saveButton(){
     <ul class="forminfo">
     <li>
       <label>部门编号</label>
-      </label><input name="" type="text" class="dfinput" readonly="readonly" value="10001"/></li>
+      </label><input name="Dept_id" type="text" class="dfinput" readonly="readonly" value="${pageContext.request.getParameter("id")}" readonly="readonly""/></li>
     <li>
       <label>部门名称</label>
-      <input name="" type="text" class="dfinput" value="研发一部"/>
+      <input name="Dept_name" type="text" class="dfinput" value="${pageContext.request.getParameter("dept_name")}"/>
     </li>
      <li>
       <label>负责人 </label>
        <div class="vocation">
-    <select class="select3">
+    <select name="Dept_manager" class="select3">
     <option value="">--请选择--</option>
         <c:forEach items="${sessionScope.managers}" var="managers">
             <option value="${managers.name}">${managers.name}</option>
@@ -83,7 +83,7 @@ function saveButton(){
     </select>
     </div>
     </li>
-    <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认保存" onclick="saveButton()"/></li>
+    <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认保存" /></li>
     </ul>
     </div>
 </form>
