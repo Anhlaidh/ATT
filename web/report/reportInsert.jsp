@@ -59,40 +59,40 @@ function saveButton(){
     <div class="formbody">
     
     <div class="formtitle"><span>基本信息</span></div>
-    
+    <form action="">
     <ul class="forminfo">
     <li>
       <label>姓名</label>
-      </label><input type="text" class="dfinput" value="admin" readonly="readonly"/>
+      </label><input type="text" class="dfinput" readonly="readonly" name="insertname"/>
     </li>
     <li>
       <label>日期 <font color="red">*</font></label>
-      <input type="text" class="dfinput"  name="work_date" onClick="WdatePicker({work_date:'',dateFmt:'yyyy-MM-dd'})"/>
+      <input type="text" class="dfinput"  name="insertdate" onClick="WdatePicker({work_date:'',dateFmt:'yyyy-MM-dd'})"/>
     </li>
      <li>
-      <label>作业进度 <font color="red">*</font></label><input name="" type="text" class="dfinput" />
+      <label>作业进度 <font color="red">*</font></label><input name="insertprocess" type="text" class="dfinput" />
     </li>
     <li>
            <br />
       <label>
       作业内容<font color="red">*</font></label>
       <div style="height: 100%; line-height: 75px; float:left; margin-left: 0px;">
-		  <textarea rows="5" cols="10" id="tomorrow_plan" required="required"  name="tomorrow_plan" style="width: 500px; height: 30px; padding-left:5px; border: 1px solid #eaeff2; margin-top: 20px;ime-mode:disabled;" maxlength="255"></textarea>
+		  <textarea rows="5" cols="10" id="tomorrow_plan" required="required"  name="insetrcontent" style="width: 500px; height: 30px; padding-left:5px; border: 1px solid #eaeff2; margin-top: 20px;ime-mode:disabled;" maxlength="255"></textarea>
 		</div>
 
       </li>
     
     <li>
     <br />
-      <label>明日计划 <font color="red">*</font></label><textarea rows="5" cols="10" id="tomorrow_plan" required="required"  name="tomorrow_plan" style="width: 500px; height: 30px; padding-left:5px; border: 1px solid #eaeff2; margin-top: 20px;ime-mode:disabled;" maxlength="255"></textarea></li>
+      <label>明日计划 <font color="red">*</font></label><textarea rows="5" cols="10" id="tomorrow_plan" required="required"  name="insertplan" style="width: 500px; height: 30px; padding-left:5px; border: 1px solid #eaeff2; margin-top: 20px;ime-mode:disabled;" maxlength="255"></textarea></li>
     <li>
     <br />
-      <label>问题点</label><textarea rows="5" cols="10" id="tomorrow_plan" required="required"  name="tomorrow_plan" style="width: 500px; height: 30px; padding-left:5px; border: 1px solid #eaeff2; margin-top: 20px;ime-mode:disabled;" maxlength="255"></textarea></li>
+      <label>问题点</label><textarea rows="5" cols="10" id="tomorrow_plan" required="required"  name="insertproblem" style="width: 500px; height: 30px; padding-left:5px; border: 1px solid #eaeff2; margin-top: 20px;ime-mode:disabled;" maxlength="255"></textarea></li>
     <li>
     <br />
-      <label>需联络事项</label><textarea rows="5" cols="10" id="tomorrow_plan" required="required"  name="tomorrow_plan" style="width: 500px; height: 30px; padding-left:5px; border: 1px solid #eaeff2; margin-top: 20px;ime-mode:disabled;" maxlength="255"></textarea></li>
-    <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认保存" onclick="saveButton()"/></li>
-    </ul>
+      <label>需联络事项</label><textarea rows="5" cols="10" id="tomorrow_plan" required="required"  name="insertother" style="width: 500px; height: 30px; padding-left:5px; border: 1px solid #eaeff2; margin-top: 20px;ime-mode:disabled;" maxlength="255"></textarea></li>
+    <li><label>&nbsp;</label><input name="" type=submit class="btn" value="确认保存" onclick="saveButton()"/></li>
+    </ul></form>
   </div>
 </form>
 </body>
