@@ -4,12 +4,14 @@ import com.ATT.bean.UserInfo;
 import com.ATT.dao.initializeUserInfo;
 
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 public class LoginService {
     UserInfo UserInfo = new UserInfo();
     public UserInfo login(String account ,String password){
         try {
-            UserInfo = initializeUserInfo.get(account);
+            LinkedList list = initializeUserInfo.get(account);
+            UserInfo = (UserInfo) list.pop();
         } catch (SQLException e) {
             e.printStackTrace();
         }

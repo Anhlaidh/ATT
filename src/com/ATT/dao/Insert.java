@@ -13,7 +13,7 @@ public class Insert {
         int update = -1;
         if (method.equals("insertDept")) {
           try {
-              PreparedStatement preparedStatement = connection.prepareStatement("INSERT into T_DEPARTMENT(DEPARTMENT_ID,DEPARTMENT_NAME,MANAGER,CREATE_TIME) values (?,?,?,sysdate);");
+              PreparedStatement preparedStatement = connection.prepareStatement("INSERT into T_DEPARTMENT(DEPARTMENT_ID,DEPARTMENT_NAME,MANAGER,CREATE_TIME) values (?,?,?,sysdate)");
               DepartmentBean bean = (DepartmentBean) Bean;
               preparedStatement.setString(1,bean.getDepartmentId());
               preparedStatement.setString(2,bean.getDepartmentName());

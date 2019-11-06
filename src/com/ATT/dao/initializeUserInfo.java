@@ -7,16 +7,20 @@ import common.util.Connet;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 public class initializeUserInfo {
 
 
 
-    public static UserInfo get(String Account) throws SQLException {
+    public static LinkedList get(String Account) throws SQLException {
 
-        UserInfo UserInfo = new UserInfo();
-        ResultSet Query = Search.Search("*",Account,"T_USER_INFO");
+
+        ResultSet Query = Search.Search(Account,"T_USER_INFO");
+        LinkedList list=new LinkedList();
+
        while (Query.next()){
+           UserInfo UserInfo = new UserInfo();
            UserInfo.setName(Query.getString("NAME"));
            UserInfo.setId(Integer.parseInt(Query.getString("ID")));
            UserInfo.setAccount(Query.getString("ACCOUNT"));
@@ -30,10 +34,12 @@ public class initializeUserInfo {
            UserInfo.setLevel(Integer.parseInt(Query.getString("MYLEVEL")));
            UserInfo.setCreate_time(Query.getDate("CREATE_TIME"));
            UserInfo.setState(Integer.parseInt(Query.getString("STATE")));
+           list.add(UserInfo);
 
        }
+       Query.close();
 
-       return UserInfo;
+       return list;
 
     }
 }

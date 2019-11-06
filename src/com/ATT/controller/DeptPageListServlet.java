@@ -16,6 +16,7 @@ import java.util.LinkedList;
 
 @WebServlet(name = "DeptPageListServlet",urlPatterns = "/DeptPageListServlet")
 public class DeptPageListServlet extends HttpServlet {
+    HttpSession session;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
@@ -28,9 +29,9 @@ public class DeptPageListServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        HttpSession session = request.getSession();
+        session = request.getSession();
         session.setAttribute("departmentList",list);
-        request.getRequestDispatcher(request.getContextPath()+"/dept/deptSearch.jsp").forward(request,response);
+response.sendRedirect(request.getContextPath()+"dept/deptSearch.jsp");
 //        DepartmentBean departmentBean = (DepartmentBean) list.get(0);
 //        System.out.println(departmentBean.getName());
 
@@ -40,4 +41,6 @@ public class DeptPageListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost(request, response);
     }
+
+
 }

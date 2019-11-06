@@ -35,7 +35,7 @@ public class Connet {
 
     }
 
-    public static void  close(){
+    public static void  close(Connection connection){
         try {
             connection.close();
         } catch (SQLException e) {

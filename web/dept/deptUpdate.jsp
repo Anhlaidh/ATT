@@ -1,3 +1,6 @@
+<%@ page import="com.ATT.dao.initializeUserInfo" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.LinkedList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -40,7 +43,11 @@ function saveButton(){
 </head>
 
 <body>
-<form action="userFrom">
+<%
+    LinkedList manager = initializeUserInfo.get("ALL");
+    session.setAttribute("managers",manager);
+%>
+<form action="/">
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -66,10 +73,13 @@ function saveButton(){
        <div class="vocation">
     <select class="select3">
     <option value="">--请选择--</option>
-    <option>余力</option>
-    <option>张安娜</option>
-    <option selected>张楠</option>
-    <option>张丽丽</option>
+        <c:forEach items="${sessionScope.managers}" var="managers">
+            <option value="${managers.name}">${managers.name}</option>
+        </c:forEach>
+<%--    <option>余力</option>--%>
+<%--    <option>张安娜</option>--%>
+<%--    <option selected>张楠</option>--%>
+<%--    <option>张丽丽</option>--%>
     </select>
     </div>
     </li>

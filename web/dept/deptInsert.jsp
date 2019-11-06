@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.LinkedList" %>
 <%@ page import="com.ATT.services.DeptGetList" %>
+<%@ page import="com.ATT.dao.initializeDepartment" %>
+<%@ page import="com.ATT.dao.initializeUserInfo" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -35,7 +37,7 @@ $(document).ready(function(e) {
 </script>
 <script language="javascript">
 function saveButton(){
- document.forms[0].action="deptSearch.jsp";
+ document.forms[0].action="/DeptInsertServlet";
  document.forms[0].submit();
 }
 </script>
@@ -44,11 +46,11 @@ function saveButton(){
 
 <body>
 <%
-    LinkedList manager = DeptGetList.DeptGetList("MANAGER");
+    LinkedList manager = initializeUserInfo.get("ALL");
     session.setAttribute("managers",manager);
     
 %>
-<form action="userFrom">
+<form action="/DeptInsertServlet">
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -56,7 +58,7 @@ function saveButton(){
     <li><a href="#">添加部门</a></li>
     </ul>
     </div>
-    <form action="/DeptInsertServlet">
+
     <div class="formbody">
     
     <div class="formtitle"><span>基本信息</span></div>
@@ -72,13 +74,13 @@ function saveButton(){
     <li>
       <label>负责人</label>
        <div class="vocation">
-           1
+
     <select class="select3" name="Dept_manager">
     <option value="">--请选择--</option>
         ${sessionScope.managers}
 
        <c:forEach items="${sessionScope.managers}" var="managers">
-           <option value="managers"></option>
+           <option value="${managers.name}">${managers.name}</option>
        </c:forEach>
 <%--    <option>余力</option>--%>
 <%--    <option>张安娜</option>--%>
@@ -89,7 +91,7 @@ function saveButton(){
     </li> 
     <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认保存" <%--onclick="saveButton()"--%>/></li>
     </ul>
-        </form>
+
 
 
     </div>
