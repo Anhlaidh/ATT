@@ -51,10 +51,13 @@ public class Search {
             assert preparedStatement != null;
             resultSet = preparedStatement.executeQuery();
 
+
+
         } catch (SQLException e) {
             System.out.println("prepareStatementError");
             e.printStackTrace();
         }
+
         return resultSet;
 
     }

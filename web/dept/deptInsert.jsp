@@ -2,6 +2,7 @@
 <%@ page import="java.util.LinkedList" %>
 <%@ page import="com.ATT.services.DeptGetList" %>
 <%@ page import="com.ATT.dao.initializeDepartment" %>
+<%@ page import="com.ATT.dao.initializeUserInfo" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -45,7 +46,7 @@ function saveButton(){
 
 <body>
 <%
-    LinkedList manager = initializeDepartment.get("ALL");
+    LinkedList manager = initializeUserInfo.get("ALL");
     session.setAttribute("managers",manager);
     
 %>
