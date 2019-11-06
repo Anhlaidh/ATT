@@ -1,3 +1,6 @@
+<%@ page import="com.ATT.dao.initializeUserInfo" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.LinkedList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -40,7 +43,11 @@ function saveButton(){
 </head>
 
 <body>
-<form action="userFrom">
+<%
+    LinkedList manager = initializeUserInfo.get("ALL");
+    session.setAttribute("managers",manager);
+%>
+<form action="/DeptUpdate">
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -56,24 +63,27 @@ function saveButton(){
     <ul class="forminfo">
     <li>
       <label>部门编号</label>
-      </label><input name="" type="text" class="dfinput" readonly="readonly" value="10001"/></li>
+      </label><input name="Dept_id" type="text" class="dfinput" readonly="readonly" value="${pageContext.request.getParameter("id")}" readonly="readonly""/></li>
     <li>
       <label>部门名称</label>
-      <input name="" type="text" class="dfinput" value="研发一部"/>
+      <input name="Dept_name" type="text" class="dfinput" value="${pageContext.request.getParameter("dept_name")}"/>
     </li>
      <li>
       <label>负责人 </label>
        <div class="vocation">
-    <select class="select3">
+    <select name="Dept_manager" class="select3">
     <option value="">--请选择--</option>
-    <option>余力</option>
-    <option>张安娜</option>
-    <option selected>张楠</option>
-    <option>张丽丽</option>
+        <c:forEach items="${sessionScope.managers}" var="managers">
+            <option value="${managers.name}">${managers.name}</option>
+        </c:forEach>
+<%--    <option>余力</option>--%>
+<%--    <option>张安娜</option>--%>
+<%--    <option selected>张楠</option>--%>
+<%--    <option>张丽丽</option>--%>
     </select>
     </div>
     </li>
-    <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认保存" onclick="saveButton()"/></li>
+    <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认保存" /></li>
     </ul>
     </div>
 </form>
