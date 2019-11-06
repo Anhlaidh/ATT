@@ -1,4 +1,4 @@
-<%@ page import="com.ATT.dao.initializeUserInfo" %>
+<%@ page import="com.ATT.dao.initializeList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.LinkedList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -44,7 +44,7 @@ function saveButton(){
 
 <body>
 <%
-    LinkedList manager = initializeUserInfo.get("ALL");
+    LinkedList manager = initializeList.get("ALL","DepartmentBean");
     session.setAttribute("managers",manager);
 %>
 <form action="/DeptUpdate">

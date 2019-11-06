@@ -1,3 +1,6 @@
+<%@ page import="java.util.LinkedList" %>
+<%@ page import="com.ATT.dao.initializeList" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -32,6 +35,12 @@ $(document).ready(function(e) {
 </head>
 
 <body>
+<%
+    if (session.getAttribute("Userlist")==null){
+        LinkedList list = initializeList.get("ALL","UserInfo");
+        pageContext.setAttribute("Userlist",list);
+    }
+%>
 
 	<div class="place">
     <span>位置：</span>
@@ -43,7 +52,7 @@ $(document).ready(function(e) {
 	<!--查询条件-->
     <br />
     <br />
-    <form action="/DeptPageListServlet" method="post">
+    <form action="/UserPageListServlet" method="post">
     <ul class="seachform">
   
     <li><label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名</label><input name="name" type="text" class="scinput" /></li>
@@ -97,71 +106,70 @@ $(document).ready(function(e) {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                 <td><input name="" type="checkbox" value="" /></td>
-                  <td>20130901</td>
-                  <td>admin</td>
-                  <td>研发一部</td>
-                  <td>员工</td>
-                  <td>2013-09-09 15:05</td>
-                  <td>男</td>
-                  <td>13356789067</td>
-                  <td>1980-09-09</td>
-                  <td>admin_163.com</td>
-                  <td><span><a href="userUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
-                </tr>
-                <tr>  
-                 <td><input name="" type="checkbox" value="" /></td>              
-                  <td>20130902</td>
-                  <td>wanglin</td>
-                  <td>研发二部</td>
-                  <td>部门主管</td>
-                  <td>2013-09-09 15:05</td>
-                  <td>男</td>
-                  <td>13356787689</td>
-                  <td>1983-09-09</td>
-                  <td>wanglin_inspur.com</td>
-                  <td><span><a href="userUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
-                </tr>
-                <tr>
-                  <td><input name="" type="checkbox" value="" /></td>
-                  <td>20130903</td>
-                  <td>wangli</td>
-                  <td>研发一部</td>
-                  <td>部门主管</td>
-                  <td>2013-09-09 15:05</td>
-                  <td>男</td>
-                  <td>13356789099</td>
-                  <td>1989-09-09</td>
-                  <td>ispur</td>
-                  <td><span><a href="userUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
-                </tr>
-                <tr>
-                  <td><input name="" type="checkbox" value="" /></td>
-                  <td>20130904</td>
-                  <td>zhangli</td>
-                  <td>测试部</td>
-                  <td>员工</td>
-                  <td>2013-09-09 15:05</td>
-                  <td>女</td>
-                  <td>18678987890</td>
-                  <td>1989-04-09</td>
-                  <td>admin_163.com</td>
-                   <td><span><a href="userUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
-                </tr>
-                <tr>
-                  <td><input name="" type="checkbox" value="" /></td>
-                  <td>20130905</td>
-                  <td>zhang_lin</td>
-                  <td>测试部</td>
-                  <td>员工</td>
-                  <td>2013-09-09 15:05</td>
-                  <td>男</td>
-                  <td>13305317890</td>
-                  <td>1989-09-12</td>
-                  <td>admin_163.com</td>
-                  <td><span><a href="userUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
-                </tr>
+              <c:forEach items="${Userlist}" var="list">
+                  <tr>
+                      <td><input name="check" type="checkbox" value="${list.departmentId}"/></td>
+                      <td>${list.id}</td>
+                      <td>${list.name}</td>
+                      <td>${list.departmentName}</td>
+                      <td>${list.job}</td>
+<%--                      <td>${list.totalUser}</td>--%>
+<%--                      <td>${list.createTime}</td>--%>
+<%--                      <td><span><a href="/dept/deptUpdate.jsp?id=${list.departmentId}&dept_name=${list.departmentName}" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="/DeptDelOne?DepartmentId=${list.departmentId}" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>--%>
+                  </tr>
+              </c:forEach>
+<%--                <tr>  --%>
+<%--                 <td><input name="" type="checkbox" value="" /></td>              --%>
+<%--                  <td>20130902</td>--%>
+<%--                  <td>wanglin</td>--%>
+<%--                  <td>研发二部</td>--%>
+<%--                  <td>部门主管</td>--%>
+<%--                  <td>2013-09-09 15:05</td>--%>
+<%--                  <td>男</td>--%>
+<%--                  <td>13356787689</td>--%>
+<%--                  <td>1983-09-09</td>--%>
+<%--                  <td>wanglin_inspur.com</td>--%>
+<%--                  <td><span><a href="userUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>--%>
+<%--                </tr>--%>
+<%--                <tr>--%>
+<%--                  <td><input name="" type="checkbox" value="" /></td>--%>
+<%--                  <td>20130903</td>--%>
+<%--                  <td>wangli</td>--%>
+<%--                  <td>研发一部</td>--%>
+<%--                  <td>部门主管</td>--%>
+<%--                  <td>2013-09-09 15:05</td>--%>
+<%--                  <td>男</td>--%>
+<%--                  <td>13356789099</td>--%>
+<%--                  <td>1989-09-09</td>--%>
+<%--                  <td>ispur</td>--%>
+<%--                  <td><span><a href="userUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>--%>
+<%--                </tr>--%>
+<%--                <tr>--%>
+<%--                  <td><input name="" type="checkbox" value="" /></td>--%>
+<%--                  <td>20130904</td>--%>
+<%--                  <td>zhangli</td>--%>
+<%--                  <td>测试部</td>--%>
+<%--                  <td>员工</td>--%>
+<%--                  <td>2013-09-09 15:05</td>--%>
+<%--                  <td>女</td>--%>
+<%--                  <td>18678987890</td>--%>
+<%--                  <td>1989-04-09</td>--%>
+<%--                  <td>admin_163.com</td>--%>
+<%--                   <td><span><a href="userUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>--%>
+<%--                </tr>--%>
+<%--                <tr>--%>
+<%--                  <td><input name="" type="checkbox" value="" /></td>--%>
+<%--                  <td>20130905</td>--%>
+<%--                  <td>zhang_lin</td>--%>
+<%--                  <td>测试部</td>--%>
+<%--                  <td>员工</td>--%>
+<%--                  <td>2013-09-09 15:05</td>--%>
+<%--                  <td>男</td>--%>
+<%--                  <td>13305317890</td>--%>
+<%--                  <td>1989-09-12</td>--%>
+<%--                  <td>admin_163.com</td>--%>
+<%--                  <td><span><a href="userUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>--%>
+<%--                </tr>--%>
               </tbody>
           </table></td>
         </tr>

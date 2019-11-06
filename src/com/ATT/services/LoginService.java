@@ -1,7 +1,8 @@
 package com.ATT.services;
 
 import com.ATT.bean.UserInfo;
-import com.ATT.dao.initializeUserInfo;
+import com.ATT.dao.initUserInfo;
+import com.ATT.dao.initializeList;
 
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -9,12 +10,8 @@ import java.util.LinkedList;
 public class LoginService {
     UserInfo UserInfo = new UserInfo();
     public UserInfo login(String account ,String password){
-        try {
-            LinkedList list = initializeUserInfo.get(account);
-            UserInfo = (UserInfo) list.pop();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        com.ATT.bean.UserInfo UserInfo = initUserInfo.initUserInfo(account);
+
         if ("null".equals(UserInfo)){
             return null;
         }

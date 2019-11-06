@@ -15,9 +15,9 @@ public class Search {
 //        }
 //    }
 
-
+   static Connection connection = Connet.Conncet();
     public static ResultSet Search(String key,String table){
-        Connection connection = Connet.Conncet();
+
         ResultSet resultSet = null;
         try {
             PreparedStatement preparedStatement = null;
@@ -43,6 +43,17 @@ public class Search {
 
                 preparedStatement=connection.prepareStatement("select * from T_DEPARTMENT");
 
+
+            }
+            else if (table.equals("User_Department")){
+                if (!key.equals("ALL")){
+                    preparedStatement = connection.prepareStatement("select * from   T_DEPARTMENT where MANAGER = ?");
+
+                    preparedStatement.setString(1,key);
+
+                }else
+
+                    preparedStatement=connection.prepareStatement("select * from T_DEPARTMENT");
 
             }
 
