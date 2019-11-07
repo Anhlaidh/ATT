@@ -17,6 +17,11 @@ public class Delete {
                     preparedStatement= connection.prepareStatement("delete from T_DEPARTMENT where DEPARTMENT_ID = ?");
                     preparedStatement.setString(1,key);
                     bool = preparedStatement.execute() ;
+                }else if (table=="T_REPORT_RECORD"){
+                    int id = Integer.parseInt(key);
+                    preparedStatement = connection.prepareStatement("delete  from T_REPORT_RECORD where REPORT_ID = ?");
+                    preparedStatement.setInt(1,id);
+                    bool = preparedStatement.execute();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

@@ -47,23 +47,19 @@ function saveButton(){
 </head>
 
 <body>
-<form action="myForm">
+<form action="/ReportInsertServlet" method="post">
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">日报管理</a></li>
+    <li><a href="reportSearch.jsp">日报管理</a></li>
     <li><a href="#">添加日报</a></li>
     </ul>
     </div>
-    
-    <div class="formbody">
-    
     <div class="formtitle"><span>基本信息</span></div>
-    <form action="">
     <ul class="forminfo">
     <li>
       <label>姓名</label>
-      </label><input type="text" class="dfinput" readonly="readonly" name="insertname"/>
+      </label><input type="text" class="dfinput" name="insertname"/>
     </li>
     <li>
       <label>日期 <font color="red">*</font></label>
@@ -91,8 +87,8 @@ function saveButton(){
     <li>
     <br />
       <label>需联络事项</label><textarea rows="5" cols="10" id="tomorrow_plan" required="required"  name="insertother" style="width: 500px; height: 30px; padding-left:5px; border: 1px solid #eaeff2; margin-top: 20px;ime-mode:disabled;" maxlength="255"></textarea></li>
-    <li><label>&nbsp;</label><input name="" type=submit class="btn" value="确认保存" onclick="saveButton()"/></li>
-    </ul></form>
+    <li><label>&nbsp;<input type="submit" class="btn" value="确认保存" /></label></li>
+    </ul>
   </div>
 </form>
 </body>

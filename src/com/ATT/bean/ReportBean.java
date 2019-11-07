@@ -1,25 +1,24 @@
 package com.ATT.bean;
 
 public class ReportBean {
-    private String report_id;
+
+
+    private int report_id;
     private String account;
     private String report_date;
+
+
+
     private String work_process;
     private String work_content;
     private String tomorrow_plan;
     public ReportBean() {
     }
-    public ReportBean(String name,String account , String report_date) {
-        this.account = account;
-        this.report_date = report_date;
-        this.name = name;
-    }
-
-    public String getReport_id() {
+    public int getReport_id() {
         return report_id;
     }
 
-    public void setReport_id(String report_id) {
+    public void setReport_id(int report_id) {
         this.report_id = report_id;
     }
 

@@ -78,12 +78,12 @@ $(document).ready(function(e) {
     </ul>
     </form>
     </div>
-
+    <form action="/ReportDelServlet" method="post">
     <div class="tools">
-    
+
     	<ul class="toolbar">
         <li class="click"><span><img src="../images/t01.png" /></span><a href="/report/reportInsert.jsp" target="_self">添加</a></li>
-        <li class="click"><img src="../images/trash.png" /></span><a href="#" target="rightFrame">删除</a></li>
+        <li class="click"><img src="../images/trash.png" /></span><input type="submit" style="outline: none;border: none;background:none;height: 33px;cursor: pointer"  value="删除"></li>
         </ul>
     </div>
     
@@ -109,7 +109,7 @@ $(document).ready(function(e) {
               <tr>
                   <c:forEach items="${reportList}" var="list">
               <tr>
-                  <td><input name="" type="checkbox" value=""/></td>
+                  <td><input name="check" type="checkbox" value="${list.report_id}"/></td>
                   <td>${list.account}</td>
                   <td>${list.name}</td>
                   <td>${list.report_date}</td>
@@ -117,7 +117,7 @@ $(document).ready(function(e) {
                   <td>${list.work_content}</td>
                   <td>${list.problem}</td>
                   <td>${list.other}</td>
-                  <td><span><a href="deptUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                  <td><span><a href="reportUpdate.jsp?id=${list.report_id}" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="/ReportDelOne?Report_id=${list.report_id}" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
               </tr>
               </c:forEach>
               <%
@@ -193,7 +193,7 @@ $(document).ready(function(e) {
     </table></td>
         </tr>
     </tbody>
-    </table>
+    </table></form>
     
    
 <div class="pagin">
