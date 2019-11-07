@@ -63,7 +63,7 @@ function saveButton(){
     <ul class="forminfo">
     <li>
       <label>部门编号</label>
-      </label><input name="Dept_id" type="text" class="dfinput" readonly="readonly" value="${pageContext.request.getParameter("id")}" readonly="readonly""/></li>
+      </label><input name="Dept_id" type="text" class="dfinput" readonly="readonly" value="${pageContext.request.getParameter("id")}" readonly="readonly"/></li>
     <li>
       <label>部门名称</label>
       <input name="Dept_name" type="text" class="dfinput" value="${pageContext.request.getParameter("dept_name")}"/>
