@@ -2,17 +2,16 @@ package com.ATT.bean;
 
 public class WorkRecordBean {
     private String record_id;
-    private String account;
-    private String work_date;
-    private String start_time;
-    private String end_time;
-    private String work_time;
-    private String work_cause;
-    private String beikao;
-    private int state;
 
-    public WorkRecordBean(String account, String work_date, String start_time, String end_time, String work_time, String beikao) {
+    public String getName() {
+        return name;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private String name;
 
     public String getRecord_id() {
         return record_id;
@@ -85,6 +84,16 @@ public class WorkRecordBean {
     public void setState(int state) {
         this.state = state;
     }
+
+    private String account;
+    private String work_date;
+    private String start_time;
+    private String end_time;
+    private String work_time;
+    private String work_cause;
+    private String beikao;
+    private int state;
+
 
 
 }

@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 
 public class initializeDepartment {
+
+
     public static void main(String[] args) throws SQLException {
         LinkedList list = get("ALL");
         for (int i =0;i<list.size();i++){

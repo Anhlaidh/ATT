@@ -30,7 +30,12 @@ public class workServlet extends HttpServlet {
         String end_time = request.getParameter("end_time");
         String work_time = request.getParameter("work_time");
         String beikao = request.getParameter("beikao");
-        WorkRecordBean workRecordBean = new WorkRecordBean(account, work_date, start_time, end_time, work_time, beikao);
+        WorkRecordBean workRecordBean = new WorkRecordBean();
+        workRecordBean.setAccount(account);
+        workRecordBean.setWork_date(start_time);
+        workRecordBean.setEnd_time(end_time);
+        workRecordBean.setWork_time(work_time);
+        workRecordBean.setBeikao(beikao);
         workService workService = new workService();
         int result = workService.insertWorkRecord(workRecordBean);
         response.setContentType("text/html;charset=UTF-8");

@@ -56,7 +56,7 @@ public class workDao {
 
 
     }
-    public WorkRecordBean getWorkDetail(String record_id){
+    /*public WorkRecordBean getWorkDetail(String record_id){
         WorkRecordBean workRecordBean =null;
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -95,7 +95,7 @@ public class workDao {
         }
 
 
-    }
+    }*/
 
 
 
