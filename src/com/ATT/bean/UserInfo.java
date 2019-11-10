@@ -119,7 +119,10 @@ public class UserInfo {
     }
 
     public String getSex() {
-        return sex;
+        if (sex.equals("f")){
+            return "男";
+        }
+        else return "女";
     }
 
     public void setSex(String sex) {
