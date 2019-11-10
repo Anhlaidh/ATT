@@ -1,6 +1,7 @@
-package com.ATT.services;
+package com.ATT.services.Report;
 
 import com.ATT.bean.ReportBean;
+import com.ATT.dao.Report.ReportUpdateDao;
 
 public class ReportUpdate {
     public static int ReportUpdate(int report_id,String name,String report_date,String work_process,String work_content,String tomorrow_plan,String problem,String other){
@@ -13,7 +14,7 @@ public class ReportUpdate {
         reportBean.setTomorrow_plan(tomorrow_plan);
         reportBean.setProblem(problem);
         reportBean.setOther(other);
-        int i = updateReport.updateReport(reportBean);
+        int i = ReportUpdateDao.Update(reportBean);
         return i;
 }
 }

@@ -1,8 +1,8 @@
-package com.ATT.services;
+package com.ATT.services.Report;
 
 import com.ATT.bean.ReportBean;
 
-public class ReportInsert {
+public class ReportInsertService {
     public static int ReportInsert(String name,String report_date,String work_process,String work_content,String tomorrow_plan,String problem,String other){
         ReportBean reportBean = new ReportBean();
         reportBean.setName(name);

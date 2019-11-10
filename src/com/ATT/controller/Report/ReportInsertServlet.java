@@ -1,6 +1,7 @@
-package com.ATT.controller;
+package com.ATT.controller.Report;
 
-import com.ATT.services.ReportInsert;
+import com.ATT.services.Report.ReportInsertService;
+import com.ATT.services.Report.ReportInsertService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +22,7 @@ public class ReportInsertServlet extends HttpServlet {
         String plan = request.getParameter("insertplan");
         String problem = request.getParameter("insertproblem");
         String other = request.getParameter("insertother");
-        ReportInsert.ReportInsert(name,report_date,process,content,plan,problem,other);
+        ReportInsertService.ReportInsert(name,report_date,process,content,plan,problem,other);
         response.sendRedirect(request.getContextPath()+"report/reportSearch.jsp");
     }
 

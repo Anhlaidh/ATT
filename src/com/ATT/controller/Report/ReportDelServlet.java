@@ -1,4 +1,4 @@
-package com.ATT.controller;
+package com.ATT.controller.Report;
 
 import com.ATT.services.DeptDelService;
 
@@ -18,7 +18,7 @@ public class ReportDelServlet extends HttpServlet {
         for (int i = 0;i<check.length;i++){
             list.add(check[i]);
         }
-        boolean t_report_record = DeptDelService.Del(list, "T_REPORT_RECORD");
+        boolean t_rest_record = DeptDelService.Del(list, "T_REPORT_RECORD");
         response.sendRedirect(request.getContextPath()+"/report/reportSearch.jsp");
 
     }

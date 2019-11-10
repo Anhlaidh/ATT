@@ -1,4 +1,4 @@
-package com.ATT.dao;
+package com.ATT.dao.Report;
 
 import com.ATT.bean.ReportBean;
 import common.util.Connet;

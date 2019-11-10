@@ -1,7 +1,6 @@
-package com.ATT.dao;
+package com.ATT.dao.Report;
 
 import com.ATT.bean.ReportBean;
-import com.ATT.bean.UserInfo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

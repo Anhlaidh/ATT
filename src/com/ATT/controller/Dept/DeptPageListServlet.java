@@ -1,4 +1,4 @@
-package com.ATT.controller;
+package com.ATT.controller.Dept;
 
 import com.ATT.bean.DepartmentBean;
 import com.ATT.dao.initializeDepartment;

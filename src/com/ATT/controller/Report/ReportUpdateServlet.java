@@ -1,7 +1,6 @@
-package com.ATT.controller;
+package com.ATT.controller.Report;
 
-import com.ATT.bean.ReportBean;
-import com.ATT.services.ReportUpdate;
+import com.ATT.services.Report.ReportUpdate;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
