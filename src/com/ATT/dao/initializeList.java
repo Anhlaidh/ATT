@@ -39,6 +39,7 @@ public class initializeList {
            }
 
        }
+
        Query.close();
 
        return list;

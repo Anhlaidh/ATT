@@ -12,12 +12,13 @@ public class UserInfo {
   private   String	password;
   private   String	name;
   private   String	departmentId;
-  private   String	sex;
+   private   String	sex;
   private   String	birthday;
   private   String	mobile;
   private   String	email;
   private   int	usertype;
   private DepartmentBean departmentBean;
+
 
 
     private String departmentName;
@@ -68,7 +69,14 @@ public class UserInfo {
     }
 
     public void setDepartmentBean(DepartmentBean departmentBean) {
-        this.departmentBean = departmentBean;
+        try {
+            departmentBean = initDepartment.UserDep(departmentId);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        department = departmentBean.getDepartmentName();
+
     }
 
     public long getId() {
@@ -101,13 +109,7 @@ public class UserInfo {
 
     public void setName(String name) {
         this.name = name;
-        try {
-            departmentBean = initDepartment.UserDep(name);
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        department = departmentBean.getDepartmentName();
     }
 
     public String getDepartmentId() {
@@ -116,6 +118,13 @@ public class UserInfo {
 
     public void setDepartmentId(String departmentId) {
         this.departmentId = departmentId;
+        try {
+            this.departmentBean = initDepartment.UserDep(departmentId);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        department = departmentBean.getDepartmentName();
     }
 
     public String getSex() {

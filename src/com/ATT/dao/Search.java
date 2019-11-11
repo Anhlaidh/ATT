@@ -47,7 +47,7 @@ public class Search {
             }
             else if (table.equals("User_Department")){
                 if (!key.equals("ALL")){
-                    preparedStatement = connection.prepareStatement("select * from   T_DEPARTMENT where MANAGER = ?");
+                    preparedStatement = connection.prepareStatement("select * from   T_DEPARTMENT where DEPARTMENT_ID = ?");
 
                     preparedStatement.setString(1,key);
 

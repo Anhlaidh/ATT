@@ -40,6 +40,11 @@ $(document).ready(function(e) {
         LinkedList list = initializeList.get("ALL","UserInfo");
         pageContext.setAttribute("Userlist",list);
     }
+
+%>
+<%
+    LinkedList manager = initializeList.get("ALL","DepartmentBean");
+    session.setAttribute("managers",manager);
 %>
 
 	<div class="place">
@@ -59,11 +64,10 @@ $(document).ready(function(e) {
     <li><label>部门</label>  
     <div class="vocation">
 
-            <select class="select3" name="department">
-                <option value="research_1">研发一部</option>
-                <option value="research_2">研发二部</option>
-                <option value="research_3">研发三部</option>
-                <option value="test">测试</option>
+            <select class="select3" name="dept_name">
+                <c:forEach items="${sessionScope.managers}" var="managers">
+                    <option value="${managers.departmentName}">${managers.departmentName}</option>
+                </c:forEach>
             </select>
 
 
@@ -76,12 +80,12 @@ $(document).ready(function(e) {
     </ul>
     </form>
     </div>
-
+<form action="/UserDelServlet">
     <div class="tools">
     
     	<ul class="toolbar">
-        <li class="click"><span><img src="../images/t01.png" /></span><a href="userInsert.jsp" target="rightFrame">添加</a></li>
-        <li class="click"><img src="../images/trash.png" /></span><a href="#" target="rightFrame">删除</a></li>
+        <li class="click"><span><img src="../images/t01.png" /></span><a href="/user/userInsert.jsp" target="rightFrame">添加</a></li>
+            <li class="click"><span><img src="../images/trash.png" /></span><input type="submit" style="outline: none;border: none;background:none;height: 33px;cursor: pointer"  value="删除"></li>
         </ul>
     </div>
     
@@ -108,7 +112,7 @@ $(document).ready(function(e) {
               <tbody>
               <c:forEach items="${Userlist}" var="list">
                   <tr>
-                      <td><input name="check" type="checkbox" value="${list.departmentId}"/></td>
+                      <td><input name="check" type="checkbox" value="${list.id}"/></td>
                       <td>${list.id}</td>
                       <td>${list.name}</td>
                       <td>${list.departmentName}</td>
@@ -119,10 +123,12 @@ $(document).ready(function(e) {
                       <td>${list.birthday}</td>
                       <td>${list.email }</td>
 
-
-                                        <td><span><a href="/user/userUpdate.jsp?id=${list.id}" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="/DeptDelOne?DepartmentId=${list.departmentId}" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                      <td><span><a href="/user/userUpdate.jsp?id=${list.id}&name=${list.name}" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="/UserDelOne?Id=${list.id}" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
                   </tr>
               </c:forEach>
+              <%
+                  session.removeAttribute("Userlist");
+              %>
 <%--                <tr>  --%>
 <%--                 <td><input name="" type="checkbox" value="" /></td>              --%>
 <%--                  <td>20130902</td>--%>
@@ -187,8 +193,8 @@ $(document).ready(function(e) {
         </tr>
     </tbody>
     </table>
-    
-   
+
+</form>
 <div class="pagin">
     	<div class="message">共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页</div>
         <ul class="paginList">

@@ -74,8 +74,8 @@ function saveButton(){
     <select name="Dept_manager" class="select3">
     <option value="">--请选择--</option>
         <c:forEach items="${sessionScope.managers}" var="managers">
-            <option value="${managers.name}">${managers.name}</option>
-        </c:forEach>
+        <option value="${managers.name}">${managers.name}</option>
+    </c:forEach>
 <%--    <option>余力</option>--%>
 <%--    <option>张安娜</option>--%>
 <%--    <option selected>张楠</option>--%>

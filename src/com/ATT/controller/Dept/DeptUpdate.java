@@ -1,4 +1,4 @@
-package com.ATT.services;
+package com.ATT.controller.Dept;
 
 import com.ATT.bean.DepartmentBean;
 import com.ATT.dao.Update;

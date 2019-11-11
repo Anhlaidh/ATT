@@ -18,6 +18,11 @@ public class Delete {
                     preparedStatement.setString(1,key);
                     bool = preparedStatement.execute() ;
                 }
+                if (table=="T_USER_INFO"){
+                    preparedStatement= connection.prepareStatement("delete from T_USER_INFO where ID = ?");
+                    preparedStatement.setString(1,key);
+                    bool = preparedStatement.execute() ;
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }

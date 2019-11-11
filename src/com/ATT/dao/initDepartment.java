@@ -31,12 +31,12 @@ public class initDepartment {
 
         return departmentBean;
     }
-    public static DepartmentBean UserDep(String name) throws SQLException {
-        ResultSet query= Search.Search(name,"User_Department");
+    public static DepartmentBean UserDep(String id) throws SQLException {
+        ResultSet query= Search.Search(id,"User_Department");
         DepartmentBean departmentBean= new DepartmentBean();
         while (query.next()){
 
-            departmentBean.setDepartmentId(query.getString("DEPARTMENT_ID"));
+
             departmentBean.setDepartmentName(query.getString("DEPARTMENT_NAME"));
             departmentBean.setName(query.getString("MANAGER"));
             departmentBean.setTotalUser(query.getInt("TOTAL_USER")+"");

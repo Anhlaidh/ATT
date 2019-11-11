@@ -1,3 +1,7 @@
+<%@ page import="com.ATT.dao.initializeList" %>
+<%@ page import="java.util.LinkedList" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -41,7 +45,11 @@ function saveButton(){
 </head>
 
 <body>
-<form action="userFrom">
+<%
+    LinkedList manager = initializeList.get("ALL","DepartmentBean");
+    session.setAttribute("managers",manager);
+%>
+<form action="/UserUpdateServlet" method="post">
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -49,48 +57,47 @@ function saveButton(){
     <li><a href="#">修改用户</a></li>
     </ul>
     </div>
-    
+
     <div class="formbody">
-    
+
     <div class="formtitle"><span>基本信息</span></div>
-    
+
     <ul class="forminfo">
     <li>
       <label>工号 <font color="red">*</font></label>
-      </label><input name="" type="text" class="scinput" value="20130901" readonly="readonly"/></li>
+      </label><input name="id" type="text" class="scinput" value="${pageContext.request.getParameter("id")}" readonly="readonly"/></li>
     <li>
       <label>密码 <font color="red">*</font></label>
-      <input name="" type="password" class="dfinput" value="123"/>
+      <input name="password" type="password" class="dfinput" value=""/>
     </li>
      <li>
       <label>确认密码 <font color="red">*</font></label><input name="" type="password" class="dfinput" />
     </li>
     <li>
       <label>姓名 <font color="red">*</font></label>
-      </label><input name="" type="text" class="dfinput" value="admin"/>
+      </label><input name="name" type="text" class="dfinput" value="${pageContext.request.getParameter("name")}"/>
       </li>
-     <li><label>部门</label>  
+     <li><label>部门</label>
         <div class="vocation">
-        <select class="select3">
+        <select name="department" class="select3">
         <option>--请选择--</option>
-        <option selected="selected">研发一部</option>
-        <option>研发二部</option>
-        <option>研发三部</option>
-        <option>测试</option>
+            <c:forEach items="${sessionScope.managers}" var="managers">
+                <option value="${managers.departmentName}">${managers.departmentName}</option>
+            </c:forEach>
         </select>
         </div>
     </li>
     <li>
       <label>性别</label>
-      <cite><input name="" type="radio" value="" checked="checked" />
+      <cite><input name="sex" type="radio" value="0" checked="checked" />
       男&nbsp;&nbsp;&nbsp;&nbsp;
-      <input name="" type="radio" value="" />
+      <input name="sex" type="radio" value="1" />
       女</cite></li>
-    <li><label>手机号码 <font color="red">*</font></label><input name="" type="text" class="dfinput" value="13356789067" /></li>
+    <li><label>手机号码 <font color="red">*</font></label><input name="phone" type="text" class="dfinput" value="" /></li>
     <li><label>出生日期</label>
-    <input name="" type="text" class="dfinput" value="1980-09-09" onClick="WdatePicker({work_date:'',dateFmt:'yyyy-MM-dd'})"/></li>
-    <li><label>邮箱 <font color="red">*</font></label><input name="" type="text" class="dfinput" value="admin_163.com" /></li>
-    <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认保存" onclick="saveButton()"/></li>
+    <input name="birthday" type="text" class="dfinput" value="" onClick="WdatePicker({work_date:'',dateFmt:'yyyy-MM-dd'})"/></li>
+    <li><label>邮箱 <font color="red">*</font></label><input name="email" type="text" class="dfinput" value="" /></li>
+    <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认保存" /></li>
     </ul>
     </div>
 </form>
