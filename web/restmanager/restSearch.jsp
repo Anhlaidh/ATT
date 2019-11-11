@@ -119,7 +119,7 @@ $(document).ready(function(e) {
                     <td>${list.end_time}</td>
                     <td>${list.rest_time}</td>
                     <td>${list.shenpi}</td>
-                    <td><span><a href="restUpdate.jsp?id=${list.rest_id}" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="/RestDelOne?rest_id=${list.rest_id}" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                    <td><span><a href="restUpdate.jsp?id=${list.rest_id}&account=${list.account}&name=${list.name}" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="/RestDelOne?rest_id=${list.rest_id}" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
                 </tr>
                 </c:forEach>
                 <%

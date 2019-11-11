@@ -43,7 +43,10 @@ function saveButton(){
 </script>
 
 </head>
-
+<%
+    request.setCharacterEncoding("utf-8");
+    response.setCharacterEncoding("utf-8");
+%>
 <body>
 <form action="/RestUpdate?id=${pageContext.request.getParameter("id")}" method="post">
 	<div class="place">
@@ -61,11 +64,11 @@ function saveButton(){
     <ul class="forminfo">
     <li>
       <label>工号</label>
-      </label><input type="text" class="dfinput" value="account" readonly="readonly"/>
+      </label><input type="text" class="dfinput" value="${pageContext.request.getParameter("account")}" readonly="readonly"/>
     </li>
     <li>
       <label>姓名</label>
-      </label><input type="text" class="dfinput" value="name" readonly="readonly"/>
+      </label><input type="text" class="dfinput" value="${pageContext.request.getParameter("name")}" readonly="readonly"/>
     </li>
     <li>
       <label>休假开始日期 <font color="red">*</font></label>
