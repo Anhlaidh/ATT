@@ -46,18 +46,20 @@ $(document).ready(function(e) {
 <%
     PageInfoBean p = new PageInfoBean();
 
-    if (session.getAttribute("p")==null){
+    if (session.getAttribute("p")!=null){
+        p = (PageInfoBean) session.getAttribute("p");
+        LinkedList list= p.getBeans();
+
+        pageContext.setAttribute("departmentList",list);
+
+
+
+    }else {
+
         p.setCurrentPage(1);
         p.setTotalCount(16);
         LinkedList list = DeptDaoImpl.queryDeptByPage(1,5);
         session.setAttribute("departmentList",list);
-
-
-    }else {
-       p = (PageInfoBean) session.getAttribute("p");
-        LinkedList list= p.getBeans();
-
-        pageContext.setAttribute("departmentList",list);
 
     }
 

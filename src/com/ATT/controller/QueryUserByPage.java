@@ -2,7 +2,7 @@ package com.ATT.controller;
 
 import com.ATT.bean.PageInfoBean;
 import com.ATT.dao.b.DeptDaoImpl;
-
+import com.ATT.dao.b.UserInfoDaoImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,15 +13,14 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.LinkedList;
 
-@WebServlet(name = "QueryDeptByPage",urlPatterns = "/QueryDeptByPage")
-public class QueryDeptByPage extends HttpServlet {
+@WebServlet(name = "QueryUserByPage",urlPatterns = "/QueryUserByPage")
+public class QueryUserByPage extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    this.doGet(request, response);
+        this.doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    int count = DeptDaoImpl.getTotalCount();
+    int count = UserInfoDaoImpl.getTotalCount();
         String cPage = request.getParameter("currentPage");
         if (cPage==null){
             cPage="1";
@@ -33,14 +32,15 @@ public class QueryDeptByPage extends HttpServlet {
         PageInfoBean pageInfoBean=new PageInfoBean();
         pageInfoBean.setPageSize(size);
         pageInfoBean.setCurrentPage(currentPage);
-        LinkedList depts = DeptDaoImpl.queryDeptByPage(pageInfoBean.getCurrentPage(),pageInfoBean.getPageSize());
+        LinkedList users = UserInfoDaoImpl.queryUserByPage(pageInfoBean.getCurrentPage(),pageInfoBean.getPageSize());
 
-        pageInfoBean.setBeans(depts);
+        pageInfoBean.setBeans(users);
 
 
 
         HttpSession session = request.getSession();
-        session.setAttribute("p",pageInfoBean);
-        response.sendRedirect(request.getContextPath()+"dept/deptSearch.jsp");
+        session.setAttribute("up",pageInfoBean);
+        response.sendRedirect(request.getContextPath()+"user/userSearch.jsp");
+
     }
 }

@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.LinkedList" %>
+<%@ page import="com.ATT.dao.RestManager.initializeRest" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -36,7 +39,14 @@ $(document).ready(function(e) {
 });
 </script>
 </head>
+<%
+    if(session.getAttribute("restlist")==null){
+        LinkedList list = initializeRest.get("ALL","ALL",0);
+        pageContext.setAttribute("restlist",list);
+    }
 
+
+%>
 <body>
 
 	<div class="place">
@@ -49,14 +59,14 @@ $(document).ready(function(e) {
 	<!--查询条件-->
     <br />
     <br />
-    <ul class="seachform">
+    <form action="/RestPageList" method="post"><ul class="seachform">
     <li>
-      <label> 休假日期:</label><input name="" type="text" class="scinput"  value="请选择开始日期" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/></li>
-     <li>  <label> 到</label><input name="" type="text" class="scinput" value="请选择结束日期" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/></li>
+      <label> 休假日期:</label><input name="start_date" type="text" class="scinput" placeholder="请输入开始日期xxxx-xx-xx"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/></li>
+     <li>  <label> 到</label><input name="end_date" type="text" class="scinput" placeholder = "请输入结束日期xxxx-xx-xx" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/></li>
     <li>
     <label>状态：</label>  
     <div class="vocation">
-    <select class="select3">
+    <select class="select3" name="state">
     <option>--请选择--</option>
     <option>审批中</option>
     <option>已批准</option>
@@ -64,15 +74,16 @@ $(document).ready(function(e) {
     </select>
     </div>
     </li>
-    <li><label>&nbsp;</label><input name="" type="button" class="scbtn" value="查询"/></li>
+    <li><label>&nbsp;</label><input type="submit" class="scbtn" value="查询"/></li>
     </ul>
+    </form>
     </div>
-
+    <form action="/RestDel" method="post">
     <div class="tools">
     
     	<ul class="toolbar">
         <li class="click"><span><img src="../images/t01.png" /></span><a href="restInsert.jsp" target="_self">添加</a></li>
-        <li class="click"><img src="../images/trash.png" /></span><a href="#" target="rightFrame">删除</a></li>
+        <li class="click"><img src="../images/trash.png" /></span><input type="submit" style="outline: none;border: none;background:none;height: 33px;cursor: pointer"  value="删除"></li>
         </ul>
     </div>
     
@@ -97,7 +108,24 @@ $(document).ready(function(e) {
               </thead>
               <tbody>
                 <tr>
-                 <td><input name="" type="checkbox" value="" /></td>
+                    <c:forEach items="${restlist}" var="list">
+                <tr>
+                    <td><input name="check" type="checkbox" value="${list.rest_id}"/></td>
+                    <td>${list.account}</td>
+                    <td>${list.name}</td>
+                    <td>${list.start_date}</td>
+                    <td>${list.start_time}</td>
+                    <td>${list.end_date}</td>
+                    <td>${list.end_time}</td>
+                    <td>${list.rest_time}</td>
+                    <td>${list.shenpi}</td>
+                    <td><span><a href="restUpdate.jsp?id=${list.rest_id}&account=${list.account}&name=${list.name}" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="/RestDelOne?rest_id=${list.rest_id}" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                </tr>
+                </c:forEach>
+                <%
+                    session.removeAttribute("restlist");
+                %>
+                 <%--<td><input name="" type="checkbox" value="" /></td>
                   <td>20130901</td>
                   <td>admin</td>
                   <td>2013-09-09 </td>
@@ -155,7 +183,7 @@ $(document).ready(function(e) {
                   <td>8.0</td>
                   <td>已批准</td>
                   <td><a href="restUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></restUpdatespan></td>
-                </tr>
+                </tr>--%>
               </tbody>
           </table></td>
         </tr>
@@ -167,7 +195,7 @@ $(document).ready(function(e) {
     </table></td>
         </tr>
     </tbody>
-    </table>
+    </table></form>
     
    
 <div class="pagin">

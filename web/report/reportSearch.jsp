@@ -1,5 +1,8 @@
+<%@ page import="java.util.LinkedList" %>
+<%@ page import="com.ATT.dao.Report.initializeReport" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -40,6 +43,13 @@ $(document).ready(function(e) {
 	});
 });
 </script>
+    <%
+        if (session.getAttribute("reportList")==null){
+            LinkedList list = initializeReport.get("ALL","ALL","ALL");
+            pageContext.setAttribute("reportList",list);
+        }
+
+    %>
 </head>
 
 <body>
@@ -54,24 +64,26 @@ $(document).ready(function(e) {
 	<!--查询条件-->
     <br />
     <br />
+    <form action="/ReportPageServlet" method="post">
     <ul class="seachform">
    <li>
-      <label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名</label><input name="" type="text" class="scinput" /></li>
+      <label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名</label><input  type="text" class="scinput" name = "name" /></li>
     <li>
-      <label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开始日期</label><input name="" type="text" class="scinput" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" /></li>
+      <label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开始日期</label><input  type="text" class="scinput" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name = "startdate"/></li>
     <li>
-      <label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;结束日期</label><input name="" type="text" class="scinput" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/></li>
+      <label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;结束日期</label><input  type="text" class="scinput" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name = "enddate"/></li>
 
-    <li><label>&nbsp;</label><input name="" type="button" class="scbtn" value="查询"/></li>
+    <li><label>&nbsp;</label><input name="select" type="submit" class="scbtn" value="查询"/></li>
     
     </ul>
+    </form>
     </div>
-
+    <form action="/ReportDelServlet" method="post">
     <div class="tools">
-    
+
     	<ul class="toolbar">
-        <li class="click"><span><img src="../images/t01.png" /></span><a href="reportInsert.jsp" target="_self">添加</a></li>
-        <li class="click"><img src="../images/trash.png" /></span><a href="#" target="rightFrame">删除</a></li>
+        <li class="click"><span><img src="../images/t01.png" /></span><a href="/report/reportInsert.jsp" target="_self">添加</a></li>
+        <li class="click"><img src="../images/trash.png" /></span><input type="submit" style="outline: none;border: none;background:none;height: 33px;cursor: pointer"  value="删除"></li>
         </ul>
     </div>
     
@@ -94,6 +106,24 @@ $(document).ready(function(e) {
                 </tr>
               </thead>
               <tbody>
+              <tr>
+                  <c:forEach items="${reportList}" var="list">
+              <tr>
+                  <td><input name="check" type="checkbox" value="${list.report_id}"/></td>
+                  <td>${list.account}</td>
+                  <td>${list.name}</td>
+                  <td>${list.report_date}</td>
+                  <td>${list.work_process}</td>
+                  <td>${list.work_content}</td>
+                  <td>${list.problem}</td>
+                  <td>${list.other}</td>
+                  <td><span><a href="reportUpdate.jsp?id=${list.report_id}" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="/ReportDelOne?Report_id=${list.report_id}" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+              </tr>
+              </c:forEach>
+              <%
+                    session.removeAttribute("reportList");
+              %>
+              <%--<tbody>
                 <tr>
                  <td><input name="" type="checkbox" value="" /></td>
                   <td>20130901</td>
@@ -151,7 +181,7 @@ $(document).ready(function(e) {
                   <td>需要定期维护</td>
                   <td>&nbsp;</td>
                   <td><span><a href="reportUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
-                </tr>
+                </tr>--%>
               </tbody>
           </table></td>
         </tr>
@@ -164,6 +194,7 @@ $(document).ready(function(e) {
         </tr>
     </tbody>
     </table>
+    </form>
     
    
 <div class="pagin">

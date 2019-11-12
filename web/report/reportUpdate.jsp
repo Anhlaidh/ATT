@@ -1,3 +1,5 @@
+<%@ page import="java.util.LinkedList" %>
+<%@ page import="com.ATT.dao.Report.initializeReport" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -39,11 +41,11 @@ function saveButton(){
 </head>
 
 <body>
-<form action="myForm">
+<form action="/ReportUpdate?id=${pageContext.request.getParameter("id")}" method="post">
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">日报管理</a></li>
+    <li><a href="/report/reportSearch.jsp">日报管理</a></li>
     <li><a href="#">修改日报</a></li>
     </ul>
     </div>
@@ -51,37 +53,36 @@ function saveButton(){
     <div class="formbody">
     
     <div class="formtitle"><span>基本信息</span></div>
-    
+
     <ul class="forminfo">
     <li>
       <label>姓名</label>
-      </label><input type="text" class="dfinput" value="admin" readonly="readonly" />
+      </label><input type="text" class="dfinput" name = "name" />
     </li>
     <li>
       <label>日期 <font color="red">*</font></label>
-      <input name="" type="text" class="dfinput" value="2013-09-09" onClick="WdatePicker({work_date:'',dateFmt:'yyyy-MM-dd'})"/>
+      <input name="report_date" type="text" class="dfinput"  onClick="WdatePicker({work_date:'',dateFmt:'yyyy-MM-dd'})"/>
     </li>
      <li>
-      <label>作业进度 <font color="red">*</font></label><input name="" type="text" class="dfinput" value="100%" />
+      <label>作业进度 <font color="red">*</font></label><input name="work_process" type="text" class="dfinput" />
     </li>
     <li>
       <label>作业内容<font color="red">*</font></label>
-      </label>
-      <textarea rows="5" cols="10" id="tomorrow_plan2" required="required"  name="tomorrow_plan2" style="width: 500px; height: 30px; padding-left:5px; border: 1px solid #eaeff2; margin-top: 20px;ime-mode:disabled;" maxlength="255">登录模块详细设计</textarea>
+        <input name = "work_content" type="text" class="dfinput"/>
     </li>
     
     <li>
       <label>明日计划 <font color="red">*</font></label>
-      <textarea rows="5" cols="10" id="tomorrow_plan" required="required"  name="tomorrow_plan" style="width: 500px; height: 30px; padding-left:5px; border: 1px solid #eaeff2; margin-top: 20px;ime-mode:disabled;" maxlength="255">权限模块详细设计</textarea></li>
+        <input name = "tomorrow_plan" type="text" class="dfinput"/></li>
     <li>
       <label>问题点</label>
-      <textarea rows="5" cols="10" id="tomorrow_plan4" required="required"  name="tomorrow_plan4" style="width: 500px; height: 30px; padding-left:5px; border: 1px solid #eaeff2; margin-top: 20px;ime-mode:disabled;" maxlength="255"></textarea>
+        <input name = "problem" type="text" class="dfinput"/>
     </li>
     <li>
       <label>需联络事项</label>
-     <textarea rows="5" cols="10" id="tomorrow_plan3" required="required"  name="tomorrow_plan3" style="width: 500px; height: 30px; padding-left:5px; border: 1px solid #eaeff2; margin-top: 20px;ime-mode:disabled;" maxlength="255"></textarea>
+        <input name = "other" type="text" class="dfinput"/>
     </li>
-    <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认保存" onclick="saveButton()"/></li>
+    <li><label>&nbsp;</label><input  type="submit" class="btn" value="确认保存"/></li>
     </ul>
   </div>
 </form>

@@ -1,5 +1,7 @@
 <%@ page import="java.util.LinkedList" %>
 <%@ page import="com.ATT.dao.initializeList" %>
+<%@ page import="com.ATT.bean.PageInfoBean" %>
+<%@ page import="com.ATT.dao.b.UserInfoDaoImpl" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -35,17 +37,27 @@ $(document).ready(function(e) {
 </head>
 
 <body>
-<%
-    if (session.getAttribute("Userlist")==null){
-        LinkedList list = initializeList.get("ALL","UserInfo");
-        pageContext.setAttribute("Userlist",list);
-    }
 
-%>
+
+
 <%
-    LinkedList manager = initializeList.get("ALL","DepartmentBean");
-    session.setAttribute("managers",manager);
+    PageInfoBean up = new PageInfoBean();
+    if (session.getAttribute("up")==null){
+        up.setCurrentPage(1);
+       up.setTotalCount(16);
+        LinkedList list = UserInfoDaoImpl.queryUserByPage(1,5);
+        session.setAttribute("Userlist",list);
+
+
+    }else {
+        up = (PageInfoBean) session.getAttribute("up");
+        LinkedList list= up.getBeans();
+
+        pageContext.setAttribute("Userlist",list);
+
+    }
 %>
+
 
 	<div class="place">
     <span>位置：</span>
@@ -126,9 +138,7 @@ $(document).ready(function(e) {
                       <td><span><a href="/user/userUpdate.jsp?id=${list.id}&name=${list.name}" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="/UserDelOne?Id=${list.id}" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
                   </tr>
               </c:forEach>
-              <%
-                  session.removeAttribute("Userlist");
-              %>
+
 <%--                <tr>  --%>
 <%--                 <td><input name="" type="checkbox" value="" /></td>              --%>
 <%--                  <td>20130902</td>--%>
@@ -196,17 +206,15 @@ $(document).ready(function(e) {
 
 </form>
 <div class="pagin">
-    	<div class="message">共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页</div>
+    <div class="message">当前显示第&nbsp;<i class="blue"><%=up.getCurrentPage()%>&nbsp;</i>页</div>
         <ul class="paginList">
-        <li class="paginItem"><a href="javascript:;"><span class="pagepre"></span></a></li>
-        <li class="paginItem"><a href="javascript:;">1</a></li>
-        <li class="paginItem current"><a href="javascript:;">2</a></li>
-        <li class="paginItem"><a href="javascript:;">3</a></li>
-        <li class="paginItem"><a href="javascript:;">4</a></li>
-        <li class="paginItem"><a href="javascript:;">5</a></li>
-        <li class="paginItem more"><a href="javascript:;">...</a></li>
-        <li class="paginItem"><a href="javascript:;">10</a></li>
-        <li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
+        <li class="paginItem"><a href="/QueryUserByPage?currentPage=<%=up.getCurrentPage()-1%>"><span class="pagepre"></span></a></li>
+        <li class="paginItem"><a href="/QueryUserByPage?currentPage=1">1</a></li>
+        <li class="paginItem" ><a href="/QueryUserByPage?currentPage=2">2</a></li>
+        <li class="paginItem"><a href="/QueryUserByPage?currentPage=3">3</a></li>
+        <li class="paginItem"><a href="/QueryUserByPage?currentPage=4">4</a></li>
+        <li class="paginItem"><a href="/QueryUserByPage?currentPage=5">5</a></li>
+        <li class="paginItem"><a href="/QueryUserByPage?currentPage=<%=up.getCurrentPage()+1%>"><span class="pagenxt"></span></a></li>
         </ul>
     </div>
     
@@ -237,5 +245,11 @@ $(document).ready(function(e) {
     <script type="text/javascript">
 	$('.tablelist tbody tr:odd').addClass('odd');
 	</script>
+<%
+    session.removeAttribute("Userlist");
+%>
+<%
+    session.removeAttribute("p");
+%>
 </body>
 </html>

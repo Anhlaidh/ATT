@@ -33,7 +33,7 @@ public class Search {
 
             }
 //            (table.equals("T_DEPARTMENT")
-            else  if (table.equals("T_DEPARTMENT")){
+            else if (table.equals("T_DEPARTMENT")){
                 if (!key.equals("ALL")){
                     preparedStatement = connection.prepareStatement("select * from   T_DEPARTMENT where DEPARTMENT_NAME = ?");
 
@@ -56,6 +56,18 @@ public class Search {
                     preparedStatement=connection.prepareStatement("select * from T_WORK_RECORD");
 
             }
+            else if (table.equals("User_Department")){
+                if (!key.equals("ALL")){
+                    preparedStatement = connection.prepareStatement("select * from   T_DEPARTMENT where DEPARTMENT_ID = ?");
+
+                    preparedStatement.setString(1,key);
+
+                }else
+
+                    preparedStatement=connection.prepareStatement("select * from T_DEPARTMENT");
+
+            }
+
 
 
 

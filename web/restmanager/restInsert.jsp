@@ -45,11 +45,11 @@ function saveButton(){
 </head>
 
 <body>
-<form action="myForm">
+<form action="/RestInsert" method="post">
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">休假管理</a></li>
+    <li><a href="restSearch.jsp">休假管理</a></li>
     <li><a href="#">添加休假申请</a></li>
     </ul>
     </div>
@@ -61,36 +61,36 @@ function saveButton(){
     <ul class="forminfo">
     <li>
       <label>工号</label>
-      </label><input type="text" class="dfinput" value="10001" readonly="readonly"/>
-    </li>
-    <li>
-      <label>姓名</label>
-      </label><input type="text" class="dfinput" value="admin" readonly="readonly"/>
+      </label><input type="text" class="dfinput" name="account"/>
     </li>
     <li>
       <label>休假开始日期 <font color="red">*</font></label>
-      <input type="text" class="dfinput"  name="work_date" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+      <input type="text" class="dfinput"  name="start_date" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
     </li>
    <li>
       <label>开始时间 <font color="red">*</font></label>
-      <input type="text" class="dfinput"  name="" /> (HH:mm)
+      <input type="text" class="dfinput"  name="start_time" /> (HH:mm)
     </li>
     <li>
       <label>休假结束日期 <font color="red">*</font></label>
-      <input type="text" class="dfinput"  name="work_date" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+      <input type="text" class="dfinput"  name="end_date" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
     </li>
      <li>
       <label>终了时间 <font color="red">*</font></label>
-      <input type="text" class="dfinput"  name="" /> (HH:mm)
+      <input type="text" class="dfinput"  name="end_time" /> (HH:mm)
     </li>
       <li>
       <label>休假时间小计 </label>
-      <input type="text" class="dfinput"  name="" readonly/> 
+      <input type="text" class="dfinput"  name="rest_time"/>
     </li>
+        <li>
+            <label>备考</label>
+            </label><input type="text" class="dfinput" name="beikao"/>
+        </li>
     <li>
     <br />
-      <label>休假原因 <font color="red">*</font></label><textarea rows="5" cols="10" id="tomorrow_plan" required="required"  name="tomorrow_plan" style="width: 500px; height: 30px; padding-left:5px; border: 1px solid #eaeff2; margin-top: 20px;ime-mode:disabled;" maxlength="255"></textarea></li>
-    <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认保存" onclick="saveButton()"/></li>
+      <label>休假原因 <font color="red">*</font></label><textarea rows="5" cols="10" id="tomorrow_plan" required="required"  name="rest_cause" style="width: 500px; height: 30px; padding-left:5px; border: 1px solid #eaeff2; margin-top: 20px;ime-mode:disabled;" maxlength="255"></textarea></li>
+    <li><label>&nbsp;</label><input  type="submit" class="btn" value="确认保存"/></li>
     </ul>
   </div>
 </form>
