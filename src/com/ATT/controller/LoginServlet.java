@@ -5,6 +5,7 @@ import com.ATT.services.LoginService;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @javax.servlet.annotation.WebServlet(name = "LoginServlet",urlPatterns = "/LoginServlet")
 public class LoginServlet extends javax.servlet.http.HttpServlet {
@@ -15,18 +16,22 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
         Password = request.getParameter("password");
         LoginService Login = new LoginService();
 
-       UserInfo userInfo = Login.login(Username, Password);
+        Boolean check = null;
+        try {
+            check = Login.login(Username, Password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 //        response.sendRedirect(request.getContextPath()+"/main.jsp");
 //        response.sendRedirect(request.getContextPath()+"/login.jsp");
 
 
-        if (userInfo==null){
+        if (check){
             request.getRequestDispatcher(request.getContextPath()+"/login.jsp").forward(request,response);
             return;
         }
         else {
-            HttpSession session = request.getSession();
-            session.setAttribute("UserInfo",userInfo);
+
             request.getRequestDispatcher(request.getContextPath()+"/main.jsp").forward(request,response);
             return;
 
