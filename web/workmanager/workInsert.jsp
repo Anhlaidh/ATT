@@ -40,7 +40,7 @@
 </head>
 
 <body>
-<form action="/workServlet" >
+<form action="/WorkManagerInsertServlet" method="post">
     <div class="place">
         <span>位置：</span>
         <ul class="placeul">
@@ -58,11 +58,11 @@
 
             <li>
                 <label>工号</label>
-                </label><input type="text" class="dfinput" value="10001" name="account"/>
+                </label><input type="text" class="dfinput"  name="account"/>
             </li>
             <li>
                 <label>姓名</label>
-                </label><input type="text" class="dfinput" value="admin" name="name"/>
+                </label><input type="text" class="dfinput"  name="name"/>
             </li>
             <li>
                 <label>加班日期 <font color="red">*</font></label>

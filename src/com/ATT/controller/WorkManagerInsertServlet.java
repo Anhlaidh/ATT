@@ -9,18 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
-@WebServlet(name = "workServlet", urlPatterns = "/workServlet")
-public class workServlet extends HttpServlet {
-
-
+@WebServlet(name = "WorkManagerInsertServlet",urlPatterns = "/WorkManagerInsertServlet")
+public class WorkManagerInsertServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         String account = request.getParameter("account");
@@ -32,7 +24,8 @@ public class workServlet extends HttpServlet {
         String beikao = request.getParameter("beikao");
         WorkRecordBean workRecordBean = new WorkRecordBean();
         workRecordBean.setAccount(account);
-        workRecordBean.setWork_date(start_time);
+        workRecordBean.setWork_date(work_date);
+        workRecordBean.setStart_time(start_time);
         workRecordBean.setEnd_time(end_time);
         workRecordBean.setWork_time(work_time);
         workRecordBean.setBeikao(beikao);
@@ -47,6 +40,9 @@ public class workServlet extends HttpServlet {
             response.sendRedirect("/workmanager/Insert.jsp");
         }
 
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 }

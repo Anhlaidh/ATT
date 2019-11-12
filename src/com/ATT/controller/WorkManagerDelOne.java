@@ -9,18 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "ManagerDelOne",urlPatterns = "/ManagerDelOne")
-public class ManagerDelOne extends HttpServlet {
+@WebServlet(name = "WorkManagerDelOne",urlPatterns = "/ManagerDelOne")
+public class WorkManagerDelOne extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String recor_id = request.getParameter("recor_id");
-        boolean delete = Delete.Delete(recor_id, "T_WORK_RECORD");
-        request.getRequestDispatcher(request.getContextPath()+"/manager/workSearch.jsp").forward(request,response);
-
+        String record_id = request.getParameter("record_id");
+        boolean delete = Delete.Delete(record_id, "T_WORK_RECORD");
+        response.sendRedirect(request.getContextPath()+"/workmanager/workSearch.jsp");
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.doPost(request, response);
+        doPost(request,response);
 
     }
 }

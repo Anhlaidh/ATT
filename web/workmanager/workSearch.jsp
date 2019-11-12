@@ -1,6 +1,6 @@
-<%@ page import="com.ATT.dao.initializeDepartment" %>
+<%@ page import="com.ATT.dao.initializeWorkManager" %>
 <%@ page import="java.util.LinkedList" %>
-<%@ page import="com.ATT.dao.initializeWorkmanager" %>
+<%@ page import="com.ATT.dao.initializeWorkManager" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -39,21 +39,22 @@
             });
         });
     </script>
+    <%
+        if (session.getAttribute("workmanagerList") == null) {
+            LinkedList list = initializeWorkManager.get("ALL","ALL",-1);
+            pageContext.setAttribute("workmanagerList", list);
+        }
+
+    %>
 </head>
 
 <body>
-<%
-    if (session.getAttribute("workmanagerList") == null) {
-        LinkedList list = initializeWorkmanager.initializeWorkmanager();
-        pageContext.setAttribute("workmanagerList", list);
-    }
 
-%>
 
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
-        <li><a href="/WorkPageListServlet">加班管理</a></li>
+        <li><a href="#">加班管理</a></li>
     </ul>
 </div>
 
@@ -63,10 +64,10 @@
 <form action="/WorkPageListServlet" method="post">
 <ul class="seachform">
     <li>
-        <label> 申请日期:</label><input name="start_date" type="text" class="scinput" value="请选择开始日期"
-                                    onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/></li>
-    <li><label> 到</label><input name="end_date" type="text" class="scinput" value="请选择结束日期"
-                                onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/></li>
+        <label> 申请日期:</label><input name="start_date" type="text" class="scinput"
+                                 /></li>
+    <li><label> 到</label><input name="end_date" type="text" class="scinput"
+                                /></li>
     <li>
         <label>状态：</label>
         <div class="vocation">
@@ -81,38 +82,24 @@
     <li><label>&nbsp;</label><input name="" type="submit" class="scbtn" value="查询"/></li>
 </ul>
 </div>
+    <form action="/WorkManagerDelServlet" method="post"></form>
 
 <div class="tools">
 
     <ul class="toolbar">
-        <li class="click"><span><img src="../images/t01.png"/></span><a href="workInsert.jsp" target="_self">添加</a>
+        <li class="click"><span><img src="../images/t01.png"/></span><a href="workInsert.jsp" target="_self">增加</a>
         </li>
-        <li class="click"><img src="../images/trash.png"/></span><a href="/WorkPageListServlet"
+        <li class="click"><img src="../images/trash.png"/></span><a href="#"
                                                                     target="rightFrame">删除</a></li>
     </ul>
 </div>
 <tr>
-<c:forEach items="${workmanagerList}" var="list">
-    <tr>
-    <td> <input name="check" type="checkbox" value="${list.account}"/></td>
-    <td>${list.name}</td>
-    <td>${list.work_date}</td>
-    <td>${list.start_time}</td>
-    <td>${list.end_time}</td>
-    <td>${list.work_time}</td>
-    <td>${list.state}</td>
-    <td><span><a href="/workmanager/workUpdate.jsp?id=${list.record_id}"
-    class="tablelink"><img
-    src="../images/user_edit.png"/>详细</a> <a href="/ManagerDelOne?recor_id=${list.record_id}"
-    class="tablelink"
-    onclick="confirm('确定要删除吗？')"> <img
-    src="../images/trash.png"/>删除</a></span></td>
-    </tr>
 
     </tr>
 
 
-    <%--<table class="tablelist">
+
+    <table class="tablelist">
         <tbody>
         <tr>
             <td>
@@ -141,7 +128,28 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
+                                            <c:forEach items="${workmanagerList}" var="list">
+                                                <tr>
+                                                    <td> <input name="check" type="checkbox" value="${list.record_id}"/></td>
+                                                    <td>${list.account}</td>
+                                                    <td>${list.name}</td>
+                                                    <td>${list.work_date}</td>
+                                                    <td>${list.start_time}</td>
+                                                    <td>${list.end_time}</td>
+                                                    <td>${list.work_time}</td>
+                                                    <td>${list.state}</td>
+                                                    <td><span><a href="/workmanager/workUpdate.jsp?record_id=${list.record_id}" class="tablelink"><img
+                                                            src="../images/user_edit.png"/>修改</a> <a href="/ManagerDelOne?record_id=${list.record_id}"
+                                                                                                     class="tablelink"
+                                                                                                     onclick="confirm('确定要删除吗？')"> <img
+                                                            src="../images/trash.png"/>删除</a></span></td>
+                                                </tr>
+                                            </c:forEach>
+                                            <%
+                                                session.removeAttribute("workmanagerList");
+                                            %>
+
+                                            <%-- <tr>
                                                 <td><input name="" type="checkbox" value=""/></td>
                                                 <td>20130901</td>
                                                 <td>admin</td>
@@ -216,7 +224,7 @@
                                                                                                  class="tablelink"
                                                                                                  onclick="confirm('确定要删除吗？')"> <img
                                                         src="../images/trash.png"/>删除</a></span></td>
-                                            </tr>
+                                            </tr>--%>
                                             </tbody>
                                         </table>
                                     </td>
@@ -230,7 +238,7 @@
             </td>
         </tr>
         </tbody>
-    </table>--%>
+    </table>
     </form>
 
 

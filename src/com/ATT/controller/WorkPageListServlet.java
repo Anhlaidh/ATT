@@ -1,6 +1,7 @@
 package com.ATT.controller;
 
 import com.ATT.dao.WorkDaoImpl;
+import com.ATT.dao.initializeWorkManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,27 +22,21 @@ public class WorkPageListServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
-        SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat sf2 = new SimpleDateFormat("yyyy-MM-dd");
-
-        Date start_date = null;
-        Date end_date=null;
-        try {
-            start_date = sf1.parse(request.getParameter("start_date"));
-            end_date=sf2.parse(request.getParameter("end_date"));
-        } catch (ParseException e) {
+        String start_date=request.getParameter("start_date");
+        String end_date=request.getParameter("end_date");
+        int choice=Integer.parseInt(request.getParameter("choice"));
+        LinkedList list = null;
+        try{
+            list= initializeWorkManager.get(start_date,end_date,choice);
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        int choice =Integer.parseInt(request.getParameter("choice"));
-        LinkedList list=null;
-        try {
-            list = WorkDaoImpl.getComponentPageList(start_date,end_date,choice);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        session=request.getSession();
+        HttpSession session=request.getSession();
         session.setAttribute("workmanagerList",list);
-        response.sendRedirect(request.getContextPath()+"manager/workSearch.jsp");
+        response.sendRedirect(request.getContextPath()+"/workmanager/workSearch.jsp");
+
+
+
 
 
     }
@@ -51,4 +46,6 @@ public class WorkPageListServlet extends HttpServlet {
 
 
     }
+
+
 }
