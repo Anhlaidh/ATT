@@ -1,5 +1,7 @@
 package com.ATT.controller.Dept;
 
+import com.ATT.bean.PageInfoBean;
+import com.ATT.dao.b.DeptDaoImpl;
 import com.ATT.dao.initDepartment;
 import com.ATT.dao.initializeList;
 
@@ -28,9 +30,31 @@ public class DeptPageListServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        session = request.getSession();
-        session.setAttribute("departmentList",list);
-response.sendRedirect(request.getContextPath()+"dept/deptSearch.jsp");
+        int count = DeptDaoImpl.getTotalCount();
+        String cPage = request.getParameter("currentPage");
+        if (cPage==null){
+            cPage="1";
+        }
+        int currentPage=Integer.parseInt(cPage);
+        int size =5;
+
+
+        PageInfoBean pageInfoBean=new PageInfoBean();
+        pageInfoBean.setPageSize(size);
+        pageInfoBean.setCurrentPage(currentPage);
+        LinkedList depts = list;
+
+        pageInfoBean.setBeans(depts);
+
+
+
+        HttpSession session = request.getSession();
+        session.setAttribute("p",pageInfoBean);
+        response.sendRedirect(request.getContextPath()+"dept/deptSearch.jsp");
+        //
+//        session = request.getSession();
+//        session.setAttribute("departmentList",list);
+//response.sendRedirect(request.getContextPath()+"dept/deptSearch.jsp");
 //        DepartmentBean departmentBean = (DepartmentBean) list.get(0);
 //        System.out.println(departmentBean.getName());
 

@@ -5,6 +5,9 @@
 <%@ page import="java.util.LinkedList" %>
 <%@ page import="com.ATT.dao.initDepartment" %>
 <%@ page import="com.ATT.dao.initializeList" %>
+<%@ page import="com.ATT.dao.b.DeptDaoImpl" %>
+<%@ page import="com.ATT.bean.PageInfoBean" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -41,10 +44,23 @@ $(document).ready(function(e) {
 
 <body>
 <%
-    if (session.getAttribute("departmentList")==null){
-        LinkedList list = initializeList.get("ALL","DepartmentBean");
+    PageInfoBean p = new PageInfoBean();
+
+    if (session.getAttribute("p")==null){
+        p.setCurrentPage(1);
+        p.setTotalCount(16);
+        LinkedList list = DeptDaoImpl.queryDeptByPage(1,5);
+        session.setAttribute("departmentList",list);
+
+
+    }else {
+       p = (PageInfoBean) session.getAttribute("p");
+        LinkedList list= p.getBeans();
+
         pageContext.setAttribute("departmentList",list);
+
     }
+
 
 %>
 
@@ -181,17 +197,16 @@ $(document).ready(function(e) {
 
     </form>
 <div class="pagin">
-    	<div class="message">共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页</div>
+    	<div class="message">当前显示第&nbsp;<i class="blue"><%=p.getCurrentPage()%>&nbsp;</i>页</div>
         <ul class="paginList">
-        <li class="paginItem"><a href="javascript:;"><span class="pagepre"></span></a></li>
-        <li class="paginItem"><a href="javascript:;">1</a></li>
-        <li class="paginItem current"><a href="javascript:;">2</a></li>
-        <li class="paginItem"><a href="javascript:;">3</a></li>
-        <li class="paginItem"><a href="javascript:;">4</a></li>
-        <li class="paginItem"><a href="javascript:;">5</a></li>
-        <li class="paginItem more"><a href="javascript:;">...</a></li>
-        <li class="paginItem"><a href="javascript:;">10</a></li>
-        <li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
+        <li class="paginItem"><a href="/QueryDeptByPage?currentPage=<%=p.getCurrentPage()-1%>"><span class="pagepre"></span></a></li>
+        <li class="paginItem"><a href="/QueryDeptByPage?currentPage=1">1</a></li>
+        <li class="paginItem"><a href="/QueryDeptByPage?currentPage=2">2</a></li>
+<%--            current--%>
+        <li class="paginItem"><a href="/QueryDeptByPage?currentPage=3">3</a></li>
+        <li class="paginItem"><a href="/QueryDeptByPage?currentPage=4">4</a></li>
+        <li class="paginItem"><a href="/QueryDeptByPage?currentPage=5">5</a></li>
+        <li class="paginItem"><a href="/QueryDeptByPage?currentPage=<%=p.getCurrentPage()+1%>"><span class="pagenxt"></span></a></li>
         </ul>
     </div>
     
@@ -218,6 +233,9 @@ $(document).ready(function(e) {
     
     
     </div>
+<%
+    session.removeAttribute("p");
+%>
     
     <script type="text/javascript">
 	$('.tablelist tbody tr:odd').addClass('odd');
