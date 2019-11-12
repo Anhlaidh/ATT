@@ -1,5 +1,8 @@
+<%@ page import="java.util.LinkedList" %>
+<%@ page import="com.ATT.dao.initializeRestsyouninn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -21,7 +24,12 @@
         cssPath : './index.css'
     });
   </script>
-  
+    <%
+        if (session.getAttribute("restsyouninnList")==null){
+            LinkedList list= initializeRestsyouninn.get("ALL","ALL","ALL");
+            pageContext.setAttribute("restsyouninnList",list);
+        }
+    %>
 <script type="text/javascript">
 $(document).ready(function(e) {
     $(".select1").uedSelect({
@@ -50,16 +58,18 @@ $(document).ready(function(e) {
 	<!--查询条件-->
     <br />
     <br />
+    <form action="/RestsyouninnPageListServlet" method="post" >
     <ul class="seachform">
     <li>
-      <label> 休假日期:</label><input name="" type="text" class="scinput"  value="请选择开始日期"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"  /></li>
-     <li>  <label> 到</label><input name="" type="text" class="scinput" value="请选择结束日期"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"</li>
+      <label> 休假日期:</label><input name="startdate" type="text" class="scinput"  value="请选择开始日期"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"  /></li>
+     <li>  <label> 到</label><input name="enddate" type="text" class="scinput" value="请选择结束日期"  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"</li>
     <li>
     <label>姓名：</label>  
-    <input name="" type="text" class="scinput" />
+    <input name="name" type="text" class="scinput" />
     </li>
-    <li><label>&nbsp;</label><input name="" type="button" class="scbtn" value="查询"/></li>
+    <li><label>&nbsp;</label><input name="" type="submit" class="scbtn" value="查询"/></li>
     </ul>
+    </form>
     </div>
 
     <table class="tablelist"><tbody><tr><td><table class="tablelist"><tbody><tr><td><table class="tablelist">
@@ -80,19 +90,21 @@ $(document).ready(function(e) {
                 </tr>
               </thead>
               <tbody>
+                <c:forEach items="${restsyouninnList}" var="list">
                 <tr>
                  <td><input name="" type="checkbox" value="" /></td>
-                  <td>20130901</td>
-                  <td>admin</td>
-                  <td>2013-09-09 </td>
-                  <td>08:30</td>
-                  <td>2013-09-09 </td>
-                  <td>17:30</td>
-                  <td>结婚</td>
+                  <td>${list.account}</td>
+                  <td>${list.name}</td>
+                  <td>${list.rest_start_date}</td>
+                  <td>${list.start_time}</td>
+                  <td>${list.rest_end_date}</td>
+                  <td>${list.end_time}</td>
+                  <td>${list.rest_cause}</td>
                  
                  <td><span><a href="#" class="tablelink"><img src="../images/valid.png" /></a> <a href="#" class="tablelink" onclick="confirm('确定要驳回当前消息？')"> <img src="../images/error.png" /></a></span></td>
                 </tr>
-                <tr>  
+                </c:forEach>
+                <%--<tr>
                  <td><input name="" type="checkbox" value="" /></td>              
                   <td>20130902</td>
                   <td>wanglin</td>
@@ -136,7 +148,7 @@ $(document).ready(function(e) {
                   <td>17:30</td>
                   <td>年假</td>
                   <td><span><a href="#" class="tablelink"><img src="../images/valid.png" /> <a href="#" class="tablelink"  onclick="confirm('确定通过当前消息？')" /></a> <a href="#" class="tablelink" onclick="confirm('确定要驳回当前消息？')"> <img src="../images/error.png" /></a></span></td>
-                </tr>
+                </tr>--%>
               </tbody>
           </table></td>
         </tr>

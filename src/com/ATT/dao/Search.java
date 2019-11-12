@@ -15,9 +15,9 @@ public class Search {
 //        }
 //    }
 
-   static Connection connection = Connet.Conncet();
-    public static ResultSet Search(String key,String table){
 
+    public static ResultSet Search(String key,String table){
+        Connection connection = Connet.Conncet();
         ResultSet resultSet = null;
         try {
             PreparedStatement preparedStatement = null;
@@ -45,15 +45,15 @@ public class Search {
 
 
             }
-            else if (table.equals("User_Department")){
+            else if (table.equals("T_WORK_RECORD")){
                 if (!key.equals("ALL")){
-                    preparedStatement = connection.prepareStatement("select * from   T_DEPARTMENT where DEPARTMENT_ID = ?");
+                    preparedStatement = connection.prepareStatement("select * from   T_WORK_RECORD where NAME = ?");
 
                     preparedStatement.setString(1,key);
 
                 }else
 
-                    preparedStatement=connection.prepareStatement("select * from T_DEPARTMENT");
+                    preparedStatement=connection.prepareStatement("select * from T_WORK_RECORD");
 
             }
 
@@ -71,5 +71,21 @@ public class Search {
 
         return resultSet;
 
+    }
+
+
+    public static ResultSet SearchAll(){
+        Connection connection = Connet.Conncet();
+        ResultSet resultSet=null;
+        try {
+            PreparedStatement preparedStatement=null;
+            String sql="select * from T_WORK_RECORD";
+            preparedStatement=connection.prepareStatement(sql);
+            resultSet=preparedStatement.executeQuery();
+        }catch (SQLException e){
+            System.out.println("prepareStatementError");
+            e.printStackTrace();
+        }
+        return resultSet;
     }
 }

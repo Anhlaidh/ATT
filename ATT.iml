@@ -32,5 +32,6 @@
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="jstl" level="project" />
     <orderEntry type="library" name="standard" level="project" />
+    <orderEntry type="library" name="lib1" level="project" />
   </component>
 </module>
