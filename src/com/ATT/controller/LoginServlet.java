@@ -26,7 +26,7 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
 //        response.sendRedirect(request.getContextPath()+"/login.jsp");
 
 
-        if (check){
+        if (!check){
             request.getRequestDispatcher(request.getContextPath()+"/login.jsp").forward(request,response);
             return;
         }

@@ -11,6 +11,8 @@
           <element id="library" level="project" name="jstl" />
           <element id="library" level="project" name="lib1" />
           <element id="library" level="project" name="lib2" />
+          <element id="library" level="project" name="ojdbc14" />
+          <element id="library" level="project" name="lib" />
         </element>
       </element>
     </root>

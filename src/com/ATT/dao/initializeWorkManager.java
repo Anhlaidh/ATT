@@ -19,7 +19,7 @@ public class initializeWorkManager {
             workRecordBean.setStart_time(resultSet.getString("START_TIME"));
             workRecordBean.setEnd_time(resultSet.getString("END_TIME"));
             workRecordBean.setWork_time(resultSet.getString("WORK_TIME"));
-            workRecordBean.setState(resultSet.getInt("STATE"));
+            workRecordBean.setState(resultSet.getString("STATE"));
             list.add(workRecordBean);
 
 
