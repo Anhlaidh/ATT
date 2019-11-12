@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="ojdbc14">
     <CLASSES>
-      <root url="jar://D:/apache-tomcat-9.0.27/lib/ojdbc14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/ojdbc14.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

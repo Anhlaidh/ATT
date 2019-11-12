@@ -3,22 +3,29 @@ package com.ATT.services;
 import com.ATT.bean.UserInfo;
 import com.ATT.dao.initUserInfo;
 import com.ATT.dao.initializeList;
+import common.util.DBUtil;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
 public class LoginService {
     UserInfo UserInfo = new UserInfo();
-    public UserInfo login(String account ,String password){
-        com.ATT.bean.UserInfo UserInfo = initUserInfo.initUserInfo(account);
+    public Boolean login(String account ,String password) throws SQLException {
+        String sql = "select count(*) from  T_USER_INFO where ACCOUNT=? and PASSWORD=?";
+        Object[] param = {account,password};
+        ResultSet query = DBUtil.Query(sql, param);
+        int check = -1;
+        if (query.next()){
+            check = query.getInt(1);
+        }
 
-        if ("null".equals(UserInfo)){
-            return null;
+
+        if (check>0){
+            return true;
         }
-        else if (account.equals(UserInfo.getAccount())&&password.equals(UserInfo.getPassword())){
-            return UserInfo;
-        }
-        else return null;
+
+        else return false;
 
 //        try {
 //            UserInfo = initializeBean.get(account);
