@@ -41,7 +41,7 @@ function saveButton(){
 </head>
 
 <body>
-<form action="userFrom">
+<form action="/UserServlet" method="post">
 	<div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -52,44 +52,45 @@ function saveButton(){
     <div class="formbody">
     
     <div class="formtitle"><span>基本信息</span></div>
-    
+
     <ul class="forminfo">
     <li>
       <label>工号 </label>
-      </label><input name="" type="text" class="scinput" value="20130901" readonly="readonly"/></li>
+      </label><input name="account" type="text" class="scinput"  readonly="readonly" value="7205"/></li>
     <li>
       <label>密码 <font color="red">*</font></label>
-      <input name="" type="password" class="dfinput" value="123"/>
+      <input name="password" type="password" class="dfinput" />
     </li>
      <li>
-      <label>确认密码 <font color="red">*</font></label><input name="" type="password" class="dfinput" />
+      <label>确认密码 <font color="red">*</font></label><input name="password" type="password" class="dfinput" />
     </li>
     <li>
       <label>姓名 <font color="red">*</font></label>
-      </label><input name="" type="text" class="dfinput" value="admin"/>
+      </label><input name="name" type="text" class="dfinput" />
       </li>
      <li><label>部门</label>  
         <div class="vocation">
-        <select class="select3" disabled="disabled">
+        <select class="select3" name="department_name">
         <option>--请选择部门--</option>
-        <option selected="selected">研发一部</option>
-        <option>研发二部</option>
-        <option>研发三部</option>
-        <option>测试</option>
+        <option selected="selected" value="研发一部">研发一部</option>
+        <option value="研发二部">研发二部</option>
+        <option value="研发三部">研发三部</option>
+        <option value="测试">测试</option>
         </select>
         </div>
     </li>
     <li>
       <label>性别</label>
-      <cite><input name="" type="radio" value="" checked="checked" />
+      <cite><input name="sex" type="radio" value="1" checked="checked" />
       男&nbsp;&nbsp;&nbsp;&nbsp;
-      <input name="" type="radio" value="" />
+      <input name="sex" type="radio" value="2" />
       女</cite></li>
-    <li><label>手机号码 <font color="red">*</font></label><input name="" type="text" class="dfinput" value="13356789067" /></li>
-    <li><label>出生日期</label><input name="" type="text" class="dfinput" value="1980-09-09"  onClick="WdatePicker({work_date:'',dateFmt:'yyyy-MM-dd'})"/></li>
-    <li><label>邮箱 <font color="red">*</font></label><input name="" type="text" class="dfinput" value="admin_163.com" /></li>
-    <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认保存" onclick="saveButton()"/></li>
+    <li><label>手机号码 <font color="red">*</font></label><input name="mobile" type="text" class="dfinput"  /></li>
+    <li><label>出生日期</label><input name="birthday" type="text" class="dfinput"   onClick="WdatePicker({work_date:'',dateFmt:'yyyy-MM-dd'})"/></li>
+    <li><label>邮箱 <font color="red">*</font></label><input name="email" type="text" class="dfinput"  /></li>
+    <li><label>&nbsp;</label><input  type="submit" class="btn" value="确认保存" /></li>
     </ul>
+
     </div>
 </form>
 </body>

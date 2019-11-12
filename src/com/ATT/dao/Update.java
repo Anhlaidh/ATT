@@ -1,6 +1,7 @@
 package com.ATT.dao;
 
 import com.ATT.bean.DepartmentBean;
+import com.ATT.bean.WorkRecordBean;
 import common.util.Connet;
 
 import java.sql.Connection;
@@ -22,6 +23,21 @@ public class Update {
                 executeUpdate = preparedStatement.executeUpdate();
 
             }
+            else if (table.equals("T_WORK_RECORD_Y")){
+                WorkRecordBean workRecordBean = (WorkRecordBean)bean;
+                PreparedStatement preparedStatement = connection.prepareStatement("update T_WORK_RECORD set STATE = 1 where ACCOUNT = ?");
+                preparedStatement.setString(1,workRecordBean.getRecord_id());
+                executeUpdate = preparedStatement.executeUpdate();
+
+            }
+            else if (table.equals("T_WORK_RECORD_N")){
+                WorkRecordBean workRecordBean = (WorkRecordBean)bean;
+                PreparedStatement preparedStatement = connection.prepareStatement("update T_WORK_RECORD set STATE = 2 where ACCOUNT = ?");
+                preparedStatement.setString(1,workRecordBean.getRecord_id());
+                executeUpdate = preparedStatement.executeUpdate();
+
+            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();
