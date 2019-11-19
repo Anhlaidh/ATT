@@ -66,6 +66,7 @@ public class DBUtil {
                 preparedStatement.setObject(i+1,param[i]);
             }
             ResultSet resultSet = preparedStatement.executeQuery();
+
             return resultSet;
 
     }

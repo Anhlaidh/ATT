@@ -57,6 +57,10 @@ $(document).ready(function(e) {
 
     }
 %>
+<%
+    LinkedList manager = initializeList.get("ALL","DepartmentBean");
+    session.setAttribute("managers",manager);
+%>
 
 
 	<div class="place">
