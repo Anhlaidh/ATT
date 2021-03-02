@@ -2,6 +2,9 @@
 <%@ page import="com.ATT.bean.UserInfo" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.ATT.bean.DepartmentBean" %>
+<%@ page import="java.util.LinkedList" %>
+<%@ page import="com.ATT.dao.initDepartment" %>
+<%@ page import="com.ATT.dao.initializeList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -37,7 +40,13 @@ $(document).ready(function(e) {
 </head>
 
 <body>
+<%
+    if (session.getAttribute("departmentList")==null){
+        LinkedList list = initializeList.get("ALL","DepartmentBean");
+        pageContext.setAttribute("departmentList",list);
+    }
 
+%>
 
 	<div class="place">
     <span>位置：</span>
@@ -60,17 +69,20 @@ $(document).ready(function(e) {
         </ul>
     </form>
     </div>
-
+    <form action="/DeptDelServlet">
     <div class="tools">
     
     	<ul class="toolbar">
-        <li class="click"><span><img src="../images/t01.png" /></span><a href="deptInsert.jsp" target="_self">添加</a></li>
-        <li class="click"><img src="../images/trash.png" /></span><a href="#" target="rightFrame">删除</a></li>
+        <li class="click"><span><img src="../images/t01.png" /></span><a href="/dept/deptInsert.jsp" target="_self">添加</a></li>
+        <li class="click"><span><img src="../images/trash.png" /></span><input type="submit" style="outline: none;border: none;background:none;height: 33px;cursor: pointer"  value="删除"></li>
+
+<%--            <a href="/DeptDelServlet?" target="rightFrame">删除</a>--%>
         </ul>
     </div>
     
     
     <table class="tablelist"><tbody><tr><td><table class="tablelist"><tbody><tr><td><table class="tablelist">
+
       <tbody>
         <tr>
           <td><table class="tablelist">
@@ -92,17 +104,20 @@ $(document).ready(function(e) {
 <%--                 <td><input name="" type="checkbox" value="" /></td>--%>
 
 <%--                    <c:forEach >--%>
-<c:forEach items="${sessionScope.departmentList}" var="list">
+<c:forEach items="${departmentList}" var="list">
     <tr>
-    <td><input name="" type="checkbox" value=""/></td>
+    <td><input name="check" type="checkbox" value="${list.departmentId}"/></td>
     <td>${list.departmentId}</td>
     <td>${list.departmentName}</td>
     <td>${list.name}</td>
     <td>${list.totalUser}</td>
     <td>${list.createTime}</td>
-                    <td><span><a href="deptUpdate.jsp" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="#" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
+                    <td><span><a href="/dept/deptUpdate.jsp?id=${list.departmentId}&dept_name=${list.departmentName}" class="tablelink"><img src="../images/user_edit.png" />修改</a> <a href="/DeptDelOne?DepartmentId=${list.departmentId}" class="tablelink" onclick="confirm('确定要删除吗？')"> <img src="../images/trash.png" />删除</a></span></td>
     </tr>
                 </c:forEach>
+                <%
+                    session.removeAttribute("departmentList");
+                %>
 
 
     <%--                    </c:forEach>--%>
@@ -155,6 +170,7 @@ $(document).ready(function(e) {
         </tr>
       </tbody>
     </table>
+
     </td>
           </tr>
     </tbody>
@@ -162,8 +178,8 @@ $(document).ready(function(e) {
         </tr>
     </tbody>
     </table>
-    
-   
+
+    </form>
 <div class="pagin">
     	<div class="message">共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页</div>
         <ul class="paginList">

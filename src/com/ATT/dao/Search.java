@@ -15,18 +15,18 @@ public class Search {
 //        }
 //    }
 
+   static Connection connection = Connet.Conncet();
+    public static ResultSet Search(String key,String table){
 
-    public static ResultSet Search(String column,String key,String table){
-        Connection connection = Connet.Conncet();
         ResultSet resultSet = null;
         try {
             PreparedStatement preparedStatement = null;
             if (table.equals("T_USER_INFO")) {
                 if (!key.equals("ALL"))
                 {
-                    preparedStatement = connection.prepareStatement("select ? from T_USER_INFO where ACCOUNT = ?");
-                    preparedStatement.setString(1,column);
-                    preparedStatement.setString(2,key);
+                    preparedStatement = connection.prepareStatement("select * from T_USER_INFO where ACCOUNT = ?");
+//
+                    preparedStatement.setString(1,key);
                 }else
 
                 preparedStatement=connection.prepareStatement("select * from T_USER_INFO");
@@ -35,24 +35,40 @@ public class Search {
 //            (table.equals("T_DEPARTMENT")
             else  if (table.equals("T_DEPARTMENT")){
                 if (!key.equals("ALL")){
-                    preparedStatement = connection.prepareStatement("select ? from   T_DEPARTMENT where DEPARTMENT_NAME = ?");
-                    preparedStatement.setString(1,column);
-                    preparedStatement.setString(2,key);
+                    preparedStatement = connection.prepareStatement("select * from   T_DEPARTMENT where DEPARTMENT_NAME = ?");
+
+                    preparedStatement.setString(1,key);
 
                 }else
 
                 preparedStatement=connection.prepareStatement("select * from T_DEPARTMENT");
 
+
             }
+            else if (table.equals("User_Department")){
+                if (!key.equals("ALL")){
+                    preparedStatement = connection.prepareStatement("select * from   T_DEPARTMENT where DEPARTMENT_ID = ?");
+
+                    preparedStatement.setString(1,key);
+
+                }else
+
+                    preparedStatement=connection.prepareStatement("select * from T_DEPARTMENT");
+
+            }
+
 
 
             assert preparedStatement != null;
             resultSet = preparedStatement.executeQuery();
 
+
+
         } catch (SQLException e) {
             System.out.println("prepareStatementError");
             e.printStackTrace();
         }
+
         return resultSet;
 
     }

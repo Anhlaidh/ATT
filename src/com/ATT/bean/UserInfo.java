@@ -1,6 +1,9 @@
 package com.ATT.bean;
 
-import javax.xml.crypto.Data;
+import com.ATT.dao.initDepartment;
+import com.ATT.dao.initUserInfo;
+
+import java.sql.SQLException;
 import java.util.Date;
 
 public class UserInfo {
@@ -9,14 +12,72 @@ public class UserInfo {
   private   String	password;
   private   String	name;
   private   String	departmentId;
-  private   String	sex;
+   private   String	sex;
   private   String	birthday;
   private   String	mobile;
   private   String	email;
   private   int	usertype;
+  private DepartmentBean departmentBean;
+
+
+
+    private String departmentName;
+
+    public String getDepartmentName() {
+
+        return departmentBean.getDepartmentName();
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    private String job;
+
   private   java.util.Date create_time;
-  private   int	level;
+
+    public String getJob() {
+        if (usertype==0)
+        return "部门经理";
+        if (usertype==1){
+            return "系统管理员";
+        }
+        else return "员工";
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    public String getDepartment() {
+        String department = departmentBean.getDepartmentName();
+
+
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    private   int	level;
   private   int	state;
+  private   String department;
+
+    public DepartmentBean getDepartmentBean() {
+        return departmentBean;
+    }
+
+    public void setDepartmentBean(DepartmentBean departmentBean) {
+        try {
+            departmentBean = initDepartment.UserDep(departmentId);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        department = departmentBean.getDepartmentName();
+
+    }
 
     public long getId() {
         return id;
@@ -48,6 +109,7 @@ public class UserInfo {
 
     public void setName(String name) {
         this.name = name;
+
     }
 
     public String getDepartmentId() {
@@ -56,10 +118,20 @@ public class UserInfo {
 
     public void setDepartmentId(String departmentId) {
         this.departmentId = departmentId;
+        try {
+            this.departmentBean = initDepartment.UserDep(departmentId);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        department = departmentBean.getDepartmentName();
     }
 
     public String getSex() {
-        return sex;
+        if (sex.equals("f")){
+            return "男";
+        }
+        else return "女";
     }
 
     public void setSex(String sex) {
@@ -121,4 +193,6 @@ public class UserInfo {
     public void setState(int state) {
         this.state = state;
     }
+
+
 }
